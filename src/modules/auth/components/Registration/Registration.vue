@@ -46,12 +46,13 @@
 
         <div v-if="data.currentStep < 2">
           <ui-button
-              @click="nextStep"
+              @click="validateFirstStep"
           >
             следующий этап
           </ui-button>
 
         </div>
+
 
         <div v-if="data.currentStep == 2">
           <ui-button
@@ -81,7 +82,7 @@ import UiButton from "../../../../components/UiButton/UiButton.vue";
 
 import { registrationComposables } from "./Registration.composables.ts";
 
-const { data, previousStep, nextStep, onSubmit } = registrationComposables();
+const { data, previousStep, validateFirstStep, onSubmit } = registrationComposables();
 
 let currentStepComponent = computed(() => {
   switch (data.currentStep) {
