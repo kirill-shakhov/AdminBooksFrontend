@@ -2,6 +2,8 @@ import $api from "./helpers/createAxiosInstance.ts";
 import { AxiosResponse } from 'axios';
 import { AuthResponse } from "../models/response/AuthResponse.ts";
 import { RegistrationRequest } from "../models/request/RegistrationRequest.ts";
+import { CheckUserRequest } from "../models/request/CheckUserRequest.ts";
+import { CheckUserResponse } from "../models/response/CheckUserResponse.ts";
 
 export default class AuthService {
     static async login(username: string, password: string): Promise<AxiosResponse<AuthResponse>> {
@@ -16,6 +18,10 @@ export default class AuthService {
 
     static async logout(): Promise<void> {
         await $api.post(`/logout`);
+    }
+
+    static async checkUser(request: CheckUserRequest): Promise<CheckUserResponse> {
+        return $api.post<CheckUserResponse>(`auth/check-user`, request ).then(response => response.data)
     }
 
 }
