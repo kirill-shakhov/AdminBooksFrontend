@@ -24,7 +24,7 @@ export function registrationComposables() {
         }
     );
 
-    const { handleSubmit,errors } = useForm({
+    const { handleSubmit, validate, errors, setFieldError } = useForm({
         validationSchema: schema
     });
 
@@ -52,6 +52,35 @@ export function registrationComposables() {
         }
     }
 
+    const checkUser = async () => {
+        try {
+            const response = await AuthService.checkUser({ username: data.username });
+            return response.exists;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const validateFirstStep = async () => {
+        const isValid = await validate();
+        console.log("Результат валидации:", isValid.valid);
+
+        if (!isValid.valid) {
+            console.log("Ошибки валидации:", errors.value);
+            // Действия в случае, если форма не прошла валидацию
+            return;
+        }
+
+        const isUserExists = await checkUser();
+
+        if (isUserExists) {
+            setFieldError('username', 'Пользователь с таким именем уже существует')
+            return;
+        }
+
+        nextStep();
+
+    }
 
     async function registrationNewUser() {
         try {
@@ -71,7 +100,7 @@ export function registrationComposables() {
 
     return {
         data,
-        nextStep,
+        validateFirstStep,
         previousStep,
         onSubmit
     }
