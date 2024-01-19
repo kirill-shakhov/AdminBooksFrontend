@@ -14,11 +14,14 @@
         @input="changeValue"
     />
 
-    <div v-if="errorMessage">
-      <div class="text-red-500">
-        {{ errorMessage }}
+    <transition name="fade">
+      <div v-if="errorMessage">
+        <div class="text-red-500">
+          {{ errorMessage }}
+        </div>
       </div>
-    </div>
+    </transition>
+
   </UIField>
 </template>
 
@@ -27,6 +30,7 @@ import { defineEmits } from 'vue';
 import UIField from "../UiField/UIField.vue";
 import { UiInputProps } from './UiInput.types.ts'
 import { UiInputComposables } from './UiInput.composables.ts'
+
 const emit = defineEmits(['update:value']);
 
 
@@ -44,5 +48,17 @@ const { innerValue, changeValue, errorMessage, hasErrors, handleBlur, rootClasse
 </script>
 
 <style>
+/* Стили для анимации сообщения об ошибке */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 0.9em;
+}
 
 </style>
