@@ -1,4 +1,4 @@
-import { reactive, watch } from "vue";
+import { reactive, ref, watch } from "vue";
 import { RegistrationData } from './Registration.types.ts'
 import AuthService from "../../services/AuthService.ts";
 import { object, string } from "yup";
@@ -14,6 +14,9 @@ export function registrationComposables() {
         image: '',
         currentStep: 1,
     })
+
+    const loading = ref<boolean>(false)
+    const status = ref<'initial' | 'pending' | 'success' | 'fail'>('initial');
 
     const schema = object().shape({
             username: string().required('username обязателен'),
@@ -84,11 +87,16 @@ export function registrationComposables() {
 
     async function registrationNewUser() {
         try {
+            status.value = 'pending';
+            loading.value = true;
+
             const formData = collectFormData();
             const response = await AuthService.registration(formData);
             console.log(response);
+            status.value = 'success';
         } catch (e) {
             console.log(e);
+            status.value = 'fail';
         }
 
     }
