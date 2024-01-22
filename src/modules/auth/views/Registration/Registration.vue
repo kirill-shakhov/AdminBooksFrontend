@@ -26,39 +26,41 @@
       <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
            alt="Your Company"/>
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account</h2>
+      <h3 class="mt-5 text-right text-2sm font-bold  tracking-tight text-gray-400">{{ displayCurrentStep }}</h3>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST" @submit.prevent='onSubmit'>
 
-
         <keep-alive>
-          <component :is="currentStepComponent" :formData="data" ></component>
+          <component :is="currentStepComponent" :formData="data"></component>
         </keep-alive>
+
         <div v-if="data.currentStep > 1">
           <ui-button
               @click="previousStep"
           >
-            предыдущий этап
+            previous step
           </ui-button>
 
         </div>
 
         <div v-if="data.currentStep < 2">
           <ui-button
+              :loading="loading"
               @click="validateFirstStep"
           >
-            следующий этап
+            next step
           </ui-button>
 
         </div>
 
-
         <div v-if="data.currentStep == 2">
           <ui-button
+              :loading="loading"
               type="submit"
           >
-            зарегистрироваться
+            register
           </ui-button>
 
         </div>
@@ -82,7 +84,7 @@ import UiButton from "../../../../components/UiButton/UiButton.vue";
 
 import { registrationComposables } from "./Registration.composables.ts";
 
-const { data, previousStep, validateFirstStep, onSubmit } = registrationComposables();
+const { data, loading, previousStep, validateFirstStep, displayCurrentStep, onSubmit } = registrationComposables();
 
 let currentStepComponent = computed(() => {
   switch (data.currentStep) {
