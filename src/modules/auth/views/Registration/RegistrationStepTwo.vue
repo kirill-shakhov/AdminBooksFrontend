@@ -13,14 +13,19 @@
   ```
 -->
 <template>
-  <div>Загрузить изображение</div>
+  <ui-upload-file v-model:value="props.formData.image"/>
 </template>
 
 <script lang="ts" setup>
-import UiInput from "../../../../components/UiInput/UiInput.vue";
-import { registrationComposables } from "./Registration.composables.ts";
+import UiUploadFile from "../../../../components/UiUploadFile/UiUploadFile.vue";
 
-const { data } = registrationComposables();
+interface FormData {
+  image: File | null
+}
+
+const props = defineProps<{
+  formData: FormData;
+}>();
 
 </script>
 
