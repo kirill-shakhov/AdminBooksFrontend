@@ -47,7 +47,7 @@ const props = withDefaults(defineProps<UiInputProps>(), {
 const { innerValue, changeValue, errorMessage, hasErrors, handleBlur, rootClasses } = UiInputComposables(props, emit);
 </script>
 
-<style>
+<style lang="scss">
 /* Стили для анимации сообщения об ошибке */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
