@@ -6,7 +6,7 @@ import AuthService from "../../services/AuthService.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
 import { LoginTypes } from "./Login.types.ts";
-
+import { AuthErrorResponse } from "../../models/response/AuthResponse.ts";
 
 
 export function loginComposables() {
@@ -43,7 +43,9 @@ export function loginComposables() {
             status.value = 'success';
             loading.value = false;
         } catch (e) {
-            console.log(e);
+
+            const errors: AuthErrorResponse = e.response.data;
+            setFieldError(errors.errors[0].field, errors.message);
 
             status.value = 'fail';
             loading.value = false;
