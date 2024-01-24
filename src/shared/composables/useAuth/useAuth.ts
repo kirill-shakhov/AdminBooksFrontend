@@ -1,7 +1,7 @@
 import AuthService from "../../../modules/auth/services/AuthService.ts";
 import { ref } from "vue";
 
-interface User {
+export interface User {
     activationLink: string;
     email: string;
     username: string;
@@ -11,6 +11,7 @@ interface User {
     lastName: string;
     roles: Array<string>;
 }
+
 
 const user = ref<User | null>(null);
 
@@ -24,9 +25,14 @@ export const useAuth = () => {
         }
     }
 
+    function hasAccess(roles, permissions) {
+        return roles.some(role => permissions.includes(role));
+    }
+
 
     return {
         getUser,
-        user
+        user,
+        hasAccess
     }
 }

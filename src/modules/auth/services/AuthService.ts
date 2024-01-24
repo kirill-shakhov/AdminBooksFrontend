@@ -1,9 +1,9 @@
 import $api from "./helpers/createAxiosInstance.ts";
-import { AxiosResponse } from 'axios';
 import { AuthResponse } from "../models/response/AuthResponse.ts";
 import { RegistrationRequest } from "../models/request/RegistrationRequest.ts";
 import { CheckUserRequest } from "../models/request/CheckUserRequest.ts";
 import { CheckUserResponse } from "../models/response/CheckUserResponse.ts";
+import { User } from "../../../shared/composables/useAuth/useAuth.ts";
 
 export default class AuthService {
     static async login(username: string, password: string): Promise<AuthResponse> {
@@ -17,14 +17,14 @@ export default class AuthService {
     // переписать регистрацию
 
     static async logout(): Promise<void> {
-        await $api.post(`/logout`);
+        await $api.post(`/auth/logout`);
     }
 
     static async checkUser(request: CheckUserRequest): Promise<CheckUserResponse> {
         return $api.post<CheckUserResponse>(`auth/check-user`, request).then(response => response.data)
     }
 
-    static async getUser() {
+    static async getUser(): Promise<User> {
         return $api.get(`/profile`,).then(response => response.data)
     }
 }
