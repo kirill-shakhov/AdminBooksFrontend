@@ -1,7 +1,4 @@
 <template>
-<div>
-  <router-link :to="{ name: 'register' }">Регистрация</router-link>
-</div>
   <router-view/>
 </template>
 
