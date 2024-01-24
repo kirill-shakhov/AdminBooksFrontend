@@ -1,7 +1,7 @@
 <template>
   <div class="ui-upload-file flex flex-col items-center">
-    <div>
-      <img :src="image" alt="Preview" class="preview-image"/>
+    <div v-if="image">
+      <img :src="image" alt="Preview" class="w-40 h-40 p-1 object-cover rounded-full ring-2 ring-gray-300 dark:ring-gray-500"/>
     </div>
 
     <div class="mt-5">
@@ -49,8 +49,5 @@ function handleFileChange(event: Event) {
 
 <style>
 .preview-image {
-  max-width: 200px;
-  max-height: 200px;
-  border-radius: 50%; /* Make the image round for avatar */
 }
 </style>
