@@ -1,17 +1,25 @@
-import { reactive, ref, watch } from "vue";
-import { RegistrationData } from './Registration.types.ts'
+import { computed, reactive, ref, watch } from "vue";
+import { useRouter } from 'vue-router';
+
+
 import AuthService from "../../services/AuthService.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
 
+import { RegistrationData } from './Registration.types.ts'
+import { CheckUserResponse } from "../../models/response/CheckUserResponse.ts";
+
+
 export function registrationComposables() {
+    const router = useRouter();
+
     let data = reactive<RegistrationData>({
         username: '',
         password: '',
         firstName: '',
         lastName: '',
         email: '',
-        image: '',
+        image: null,
         currentStep: 1,
     })
 
@@ -32,14 +40,27 @@ export function registrationComposables() {
     });
 
 
+    // const collectFormData = () => {
+    //     return {
+    //         username: data.username,
+    //         password: data.password,
+    //         firstName: data.firstName,
+    //         lastName: data.lastName,
+    //         email: data.email
+    //     };
+    // }
+
     const collectFormData = () => {
-        return {
-            username: data.username,
-            password: data.password,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email
-        };
+        const formData = new FormData();
+        formData.append('username', data.username);
+        formData.append('password', data.password);
+        formData.append('firstName', data.firstName);
+        formData.append('lastName', data.lastName);
+        formData.append('email', data.email);
+        if (data.image instanceof File) {
+            formData.append('image', data.image);
+        }
+        return formData;
     }
 
 
@@ -55,9 +76,13 @@ export function registrationComposables() {
         }
     }
 
+    const displayCurrentStep = computed((): string => {
+        return `Step ${data.currentStep}/2`
+    })
+
     const checkUser = async () => {
         try {
-            const response = await AuthService.checkUser({ username: data.username });
+            const response: CheckUserResponse = await AuthService.checkUser({ username: data.username });
             return response.exists;
         } catch (e) {
             console.log(e);
@@ -65,11 +90,11 @@ export function registrationComposables() {
     }
 
     const validateFirstStep = async () => {
+        loading.value = true;
         const isValid = await validate();
-        console.log("Результат валидации:", isValid.valid);
 
         if (!isValid.valid) {
-            console.log("Ошибки валидации:", errors.value);
+            loading.value = false;
             // Действия в случае, если форма не прошла валидацию
             return;
         }
@@ -77,11 +102,13 @@ export function registrationComposables() {
         const isUserExists = await checkUser();
 
         if (isUserExists) {
+            loading.value = false;
             setFieldError('username', 'Пользователь с таким именем уже существует')
             return;
         }
 
         nextStep();
+        loading.value = false;
 
     }
 
@@ -93,10 +120,16 @@ export function registrationComposables() {
             const formData = collectFormData();
             const response = await AuthService.registration(formData);
             console.log(response);
+            localStorage.setItem('token', response.accessToken);
+            await router.push('/dashboard')
+
             status.value = 'success';
+            loading.value = false;
         } catch (e) {
             console.log(e);
+
             status.value = 'fail';
+            loading.value = false;
         }
 
     }
@@ -108,8 +141,13 @@ export function registrationComposables() {
 
     return {
         data,
+        loading,
+        status,
+
+        displayCurrentStep,
         validateFirstStep,
         previousStep,
+
         onSubmit
     }
 }
