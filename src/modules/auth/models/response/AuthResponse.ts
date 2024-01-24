@@ -5,3 +5,10 @@ export interface AuthResponse {
     refreshToken: string;
     user: IUser;
 }
+
+export interface AuthErrorResponse {
+    message: string,
+    errors: [
+        { field: string }
+    ]
+}
