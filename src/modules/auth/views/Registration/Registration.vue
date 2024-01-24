@@ -80,7 +80,7 @@ import { computed, ref } from "vue";
 import RegistrationStepOne from './RegistrationStepOne.vue';
 import RegistrationStepTwo from './RegistrationStepTwo.vue';
 
-import UiButton from "../../../../components/UiButton/UiButton.vue";
+import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 
 import { registrationComposables } from "./Registration.composables.ts";
 

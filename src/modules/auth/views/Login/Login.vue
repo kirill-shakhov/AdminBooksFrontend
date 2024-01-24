@@ -49,6 +49,7 @@
         <div>
           <ui-button
               type="submit"
+              :loading="loading"
           >
             login
           </ui-button>
@@ -66,12 +67,12 @@
 </template>
 
 <script lang="ts" setup>
-import UiInput from "../../../../components/UiInput/UiInput.vue";
-import UiButton from "../../../../components/UiButton/UiButton.vue";
+import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
+import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 
 import { loginComposables } from "./Login.composables.ts";
 
-const { data, onSubmit } = loginComposables()
+const { data, loading, onSubmit } = loginComposables()
 
 </script>
 
