@@ -1,17 +1,3 @@
-<!--
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
   <form class="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
     <div class="space-y-12">
@@ -80,13 +66,11 @@
   </form>
 </template>
 
-<script setup>
-import {PhotoIcon, UserCircleIcon} from '@heroicons/vue/24/solid'
-import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
+<script setup lang="ts">
+import UiInput from '../../../../shared/components/UiInput/UiInput.vue';
 
-import {profileSettingsComposables} from "./ProfileSettings.composables.ts";
-import UiUploadFile from "../../../../shared/components/UiUploadFile/UiUploadFile.vue";
+import { profileSettingsComposables } from './ProfileSettings.composables.ts';
+import UiUploadFile from '../../../../shared/components/UiUploadFile/UiUploadFile.vue';
 
-const {data} = profileSettingsComposables();
-
+const { data } = profileSettingsComposables();
 </script>
