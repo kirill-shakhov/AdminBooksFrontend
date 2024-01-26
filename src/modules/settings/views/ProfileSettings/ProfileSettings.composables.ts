@@ -9,7 +9,7 @@ export function profileSettingsComposables() {
         firstname: user.value?.firstName,
         lastname: user.value?.lastName,
         email: user.value?.email,
-        img: `http://localhost:5000/${user.value?.image}`
+        img: `${import.meta.env.VITE_API_URL}/${user.value?.image}`
     })
 
     return {

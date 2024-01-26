@@ -15,7 +15,7 @@ export function HeaderProfileComposables() {
         user: {
             fullName: `${user.value?.firstName} ${user.value?.lastName}`,
             email: `${user.value?.email}`,
-            image: `http://localhost:5000/${user.value?.image}`
+            image: `${import.meta.env.VITE_API_URL}/${user.value?.image}`
         },
         pages: [
             {
