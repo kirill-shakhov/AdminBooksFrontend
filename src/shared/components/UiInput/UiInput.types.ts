@@ -9,7 +9,7 @@ export interface UiInputProps {
     readonly?: boolean;
 }
 
-export interface AsyncSelectEmits<T> {
-    (event: 'update:model-value', value: T): void;
+export interface UiInputEmits {
+    (event: 'update:value', value: string | number): void;
     (event: 'change'): void;
 }

@@ -15,9 +15,8 @@ export interface User {
 
 const user = ref<User | null>(null);
 
-
 export const useAuth = () => {
-    const getUser = async () => {
+    const getUser = async (): Promise<void> => {
         try {
             user.value = await AuthService.getUser();
         } catch (e) {
@@ -25,10 +24,9 @@ export const useAuth = () => {
         }
     }
 
-    function hasAccess(roles, permissions) {
+    function hasAccess(roles: string[], permissions: string[]): boolean {
         return roles.some(role => permissions.includes(role));
     }
-
 
     return {
         getUser,

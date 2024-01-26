@@ -1,11 +1,11 @@
-import { ref, watch, computed, toRef, defineEmits } from 'vue';
+import { ref, watch, computed, toRef } from 'vue';
 import { useField } from 'vee-validate';
-import { UiInputProps } from './UiInput.types.ts';
+import { UiInputEmits, UiInputProps } from './UiInput.types.ts';
 // Определение интерфейса для пропсов
 
 
 // Функция, создающая составные объекты для UiInput
-export function UiInputComposables(props: UiInputProps, emit) {
+export function useUiInput(props: UiInputProps, emit: UiInputEmits) {
     const innerValue = ref(props.value);
 
     // Следим за изменениями входного значения и обновляем состояние

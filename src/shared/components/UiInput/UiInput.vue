@@ -28,11 +28,10 @@
 <script lang="ts" setup>
 import { defineEmits } from 'vue';
 import UIField from "../UiField/UIField.vue";
-import { UiInputProps } from './UiInput.types.ts'
-import { UiInputComposables } from './UiInput.composables.ts'
+import { UiInputEmits, UiInputProps } from './UiInput.types.ts';
+import { useUiInput } from './UiInput.composables.ts';
 
-const emit = defineEmits(['update:value']);
-
+const emit = defineEmits<UiInputEmits>();
 
 const props = withDefaults(defineProps<UiInputProps>(), {
   placeholder: '',
@@ -44,7 +43,7 @@ const props = withDefaults(defineProps<UiInputProps>(), {
 })
 
 
-const { innerValue, changeValue, errorMessage, hasErrors, handleBlur, rootClasses } = UiInputComposables(props, emit);
+const { innerValue, changeValue, errorMessage, handleBlur, rootClasses } = useUiInput(props, emit);
 </script>
 
 <style lang="scss">
