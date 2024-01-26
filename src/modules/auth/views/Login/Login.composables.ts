@@ -1,4 +1,4 @@
-import { computed, reactive, ref, watch } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from 'vue-router';
 
 
@@ -26,7 +26,7 @@ export function loginComposables() {
         }
     );
 
-    const { handleSubmit, validate, errors, setFieldError } = useForm({
+    const { handleSubmit, setFieldError } = useForm({
         validationSchema: schema
     });
 
@@ -59,7 +59,7 @@ export function loginComposables() {
 
     }
 
-    const onSubmit = handleSubmit(async (values) => {
+    const onSubmit = handleSubmit(async () => {
         await login();
     })
 
