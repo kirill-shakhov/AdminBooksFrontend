@@ -27,4 +27,8 @@ export default class AuthService {
     static async getUser(): Promise<User> {
         return $api.get(`/profile`,).then(response => response.data)
     }
+
+    static async refresh(): Promise<AuthResponse> {
+        return $api.get<AuthResponse>(`/auth/refresh`).then(response => response.data)
+    }
 }
