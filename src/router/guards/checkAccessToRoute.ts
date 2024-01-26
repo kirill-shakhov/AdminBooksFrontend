@@ -7,7 +7,8 @@ export async function checkAccessToRoute(to, from, next) {
     const roles = user.value?.roles;
 
     if (requiresAuth && !hasAccess(roles, permissions)) {
-        // next({ name: 'login' });
+        alert("У вас нет доступа к этому маршруту");
+        next(false); // Останавливаем переход к новому маршруту
         return;
     }
     next();

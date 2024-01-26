@@ -1,6 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import AuthModule from "../modules/auth/index.ts";
 import DashboardModule from "../modules/dashboard/index.ts";
+import SettingsModule from "../modules/settings/index.ts";
 
 export type ModuleType = {
     router: RouteRecordRaw[];
@@ -8,7 +9,8 @@ export type ModuleType = {
 
 const router = [
     ...AuthModule.router,
-    ...DashboardModule.router
+    ...DashboardModule.router,
+    ...SettingsModule.router
 ]
 
 export default {

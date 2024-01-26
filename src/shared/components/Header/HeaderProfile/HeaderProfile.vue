@@ -18,10 +18,10 @@
         <ul v-for="item in headerProfileData.pages" :key="item.name"
             class="relative py-2 text-sm text-gray-700 dark:text-gray-200">
           <li class="hover:bg-gray-100 dark:hover:bg-gray-100">
-            <a :href="item.link"
+            <router-link :to="item.link"
                class="block text px-4 py-2-sm font-semibold leading-6 text-gray-900">{{
                 item.name
-              }}</a>
+              }}</router-link>
           </li>
         </ul>
         <div class="px-4 py-3">

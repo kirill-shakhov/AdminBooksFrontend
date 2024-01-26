@@ -18,13 +18,12 @@ router.beforeEach(async (to, from, next) => {
 
     await getUser(); // Вызываем getUser и ждем завершения
 
-    await checkAccessToRoute(to, from, next);
-
     if (to.name !== 'login' && !isUserAuthorized()) {
         next({ name: 'login' });
-    } else {
-        next();
     }
+
+    await checkAccessToRoute(to, from, next);
+
 });
 
 
