@@ -1,6 +1,5 @@
 import $api from "./helpers/createAxiosInstance.ts";
 import { AuthResponse } from "../models/response/AuthResponse.ts";
-import { RegistrationRequest } from "../models/request/RegistrationRequest.ts";
 import { CheckUserRequest } from "../models/request/CheckUserRequest.ts";
 import { CheckUserResponse } from "../models/response/CheckUserResponse.ts";
 import { User } from "../../../shared/composables/useAuth/useAuth.ts";
@@ -10,7 +9,7 @@ export default class AuthService {
         return $api.post<AuthResponse>(`auth/login`, { username, password }).then(response => response.data)
     }
 
-    static async registration(request: RegistrationRequest): Promise<AuthResponse> {
+    static async registration(request: FormData): Promise<AuthResponse> {
         return $api.post<AuthResponse>(`auth/registration`, request).then(response => response.data);
     }
 

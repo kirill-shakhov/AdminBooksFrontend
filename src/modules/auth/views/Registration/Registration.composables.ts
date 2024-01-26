@@ -1,4 +1,4 @@
-import { computed, reactive, ref, watch } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useRouter } from 'vue-router';
 
 
@@ -35,7 +35,7 @@ export function registrationComposables() {
         }
     );
 
-    const { handleSubmit, validate, errors, setFieldError } = useForm({
+    const { handleSubmit, validate, setFieldError } = useForm({
         validationSchema: schema
     });
 
@@ -52,14 +52,17 @@ export function registrationComposables() {
 
     const collectFormData = () => {
         const formData = new FormData();
+
         formData.append('username', data.username);
         formData.append('password', data.password);
         formData.append('firstName', data.firstName);
         formData.append('lastName', data.lastName);
         formData.append('email', data.email);
+
         if (data.image instanceof File) {
             formData.append('image', data.image);
         }
+
         return formData;
     }
 
@@ -134,7 +137,7 @@ export function registrationComposables() {
 
     }
 
-    const onSubmit = handleSubmit(async (values) => {
+    const onSubmit = handleSubmit(async () => {
         await registrationNewUser();
     })
 

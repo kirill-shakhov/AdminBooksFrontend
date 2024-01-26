@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import RegistrationStepOne from './RegistrationStepOne.vue';
 import RegistrationStepTwo from './RegistrationStepTwo.vue';
 
