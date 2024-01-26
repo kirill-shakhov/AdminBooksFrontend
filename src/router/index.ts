@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import modules from "../modules/index.ts";
 import { isUserAuthorized } from "../utils/isUserAuthorized/isUserAuthorized.ts";
 import { useAuth } from '../shared/composables/useAuth/useAuth.ts';
@@ -13,7 +13,7 @@ const router = createRouter({
 });
 
 // GOOD
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
     const { getUser } = useAuth(); // Получаем функцию getUser
 
     await getUser(); // Вызываем getUser и ждем завершения
