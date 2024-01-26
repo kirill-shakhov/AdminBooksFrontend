@@ -6,7 +6,7 @@ import AuthService from "../../services/AuthService.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
 import { LoginTypes } from "./Login.types.ts";
-import { AuthErrorResponse } from "../../models/response/AuthResponse.ts";
+import axios from 'axios';
 
 
 export function loginComposables() {
@@ -42,10 +42,16 @@ export function loginComposables() {
 
             status.value = 'success';
             loading.value = false;
-        } catch (e) {
+        } catch (e: unknown) {
+            if (axios.isAxiosError(e)) {
+                if (e?.response?.data) {
+                    const errors = e?.response?.data;
 
-            const errors: AuthErrorResponse = e.response.data;
-            setFieldError(errors.errors[0].field, errors.message);
+                    setFieldError(errors.errors[0].field, errors.message);
+                } else {
+                    setFieldError('username', 'API error');
+                }
+            }
 
             status.value = 'fail';
             loading.value = false;
