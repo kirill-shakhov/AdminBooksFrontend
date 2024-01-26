@@ -18,14 +18,20 @@
 <script setup lang="ts">
 import { defineEmits, ref } from 'vue';
 
-const image = ref<string | ArrayBuffer | null>(null);
-const emit = defineEmits(['update:value']);
+const image = ref<string | ArrayBuffer>();
+const emit = defineEmits<{
+  (event: 'update:value', file: File): void;
+}>();
 
 function createImagePreview(file: File) {
   const reader = new FileReader();
+
   reader.onload = (e) => {
-    image.value = e.target.result;
+    if (e.target?.result) {
+      image.value = e.target.result;
+    }
   };
+
   reader.readAsDataURL(file);
 }
 
