@@ -69,8 +69,8 @@
 <script setup lang="ts">
 import UiInput from '../../../../shared/components/UiInput/UiInput.vue';
 
-import { profileSettingsComposables } from './ProfileSettings.composables.ts';
+import { useProfileSettings } from './ProfileSettings.composables.ts';
 import UiUploadFile from '../../../../shared/components/UiUploadFile/UiUploadFile.vue';
 
-const { data } = profileSettingsComposables();
+const { data } = useProfileSettings();
 </script>
