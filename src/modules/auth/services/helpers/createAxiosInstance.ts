@@ -1,5 +1,6 @@
-import axios from 'axios';
-import { AuthResponse } from "../../models/response/AuthResponse.ts";
+import axios, { HttpStatusCode } from 'axios';
+import type { AxiosRequestConfig } from 'axios';
+import AuthService from '../AuthService.ts';
 
 export const API_URL = `http://localhost:5000`
 
@@ -9,27 +10,65 @@ const $api = axios.create({
 })
 
 $api.interceptors.request.use((config) => {
-    if (localStorage.getItem('token')) config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+
     return config;
-})
+});
+
+function createRetryTracker() {
+    const retriedRequests = new Set<string>();
+
+    return {
+        markAsRetried: (url: string) => retriedRequests.add(url),
+        hasBeenRetried: (url: string) => retriedRequests.has(url),
+        reset: (url: string) => retriedRequests.delete(url)
+    };
+}
+
+const retryTracker = createRetryTracker();
+
+async function handleUnauthorizedError(originalConfig: AxiosRequestConfig, requestUrl: string) {
+  try {
+    const { accessToken } = await AuthService.refresh();
+
+    localStorage.setItem('token', accessToken);
+
+    return $api.request({
+      ...originalConfig,
+      headers: {
+        ...originalConfig.headers,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  } catch (e) {
+    console.error('Ошибка обновления токена: ', e);
+    localStorage.removeItem('token');
+    retryTracker.reset(requestUrl);
+  }
+}
 
 $api.interceptors.response.use((config) => {
     return config;
-}, async (error) => {
-    const originalRequest = error.config;
+}, async (error: unknown) => {
 
-    if (error.response.status == 401 && error.config && !error.config._isRetry) {
-        originalRequest._isRetry = true;
+    if (axios.isAxiosError(error)) {
+        const { config, response  } = error;
 
-        try {
-            const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, { withCredentials: true })
-            localStorage.setItem('token', response.data.accessToken);
-            return $api.request(originalRequest);
-        } catch (e) {
-            console.log('не авторизован');
-            localStorage.removeItem('token');
+        if (config?.url) {
+            const { url } = config;
+
+            if (response?.status == HttpStatusCode.Unauthorized && !retryTracker.hasBeenRetried(url)) {
+              retryTracker.markAsRetried(url);
+
+              return handleUnauthorizedError(config, url);
+            }
         }
     }
+
     throw error;
 })
 
