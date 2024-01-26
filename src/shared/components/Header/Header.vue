@@ -159,9 +159,5 @@ const callsToAction = [
 
 const mobileMenuOpen = ref(false)
 
-import { useAuth } from '../../composables/useAuth/useAuth.js'
 import HeaderProfile from "./HeaderProfile/HeaderProfile.vue";
-
-const { user } = useAuth();
-
 </script>
