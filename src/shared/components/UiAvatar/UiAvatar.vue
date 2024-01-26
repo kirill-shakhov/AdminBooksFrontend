@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 interface UiAvatarProps {
-  image: string | null;
+  image: string;
 }
 
 // TODO: сделать prop size
