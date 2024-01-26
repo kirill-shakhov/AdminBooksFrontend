@@ -9,9 +9,9 @@ interface UiAvatarProps {
   image: string | null;
 }
 
-// сделать prop size
+// TODO: сделать prop size
 
-const props = withDefaults(defineProps<UiAvatarProps>(), {
+withDefaults(defineProps<UiAvatarProps>(), {
   image: ''
 })
 </script>
