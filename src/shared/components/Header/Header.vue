@@ -86,34 +86,28 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <Disclosure as="div" class="-mx-3" v-slot="{ open }">
-                <DisclosureButton
-                    class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                  Product
-                  <ChevronDownIcon :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']" aria-hidden="true"/>
-                </DisclosureButton>
-                <DisclosurePanel class="mt-2 space-y-2">
-                  <DisclosureButton v-for="item in [...products, ...callsToAction]" :key="item.name" as="a"
-                                    :href="item.href"
-                                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    {{ item.name }}
-                  </DisclosureButton>
-                </DisclosurePanel>
-              </Disclosure>
-              <a href="#"
-                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Page</a>
 
-              <a href="#"
-                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Page</a>
+              <router-link
+                  :to="{ name: 'dashboard' }"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Dashboard
+              </router-link>
 
-              <a href="#"
-                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Page</a>
+              <router-link
+                  :to="{ name: 'profile' }"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Profile
+              </router-link>
 
             </div>
-            <div class="py-6">
-              <a href="#"
-                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Page</a>
+
+            <div class="py-3">
+              <button @click="logout"
+                      class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                Sign out
+              </button>
             </div>
+
           </div>
         </div>
       </DialogPanel>
@@ -123,12 +117,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import HeaderProfile from "./HeaderProfile/HeaderProfile.vue";
+import { useAuth } from "../../composables/useAuth/useAuth.ts";
+
 import {
   Dialog,
   DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
   Popover,
   PopoverButton,
   PopoverGroup,
@@ -159,5 +153,6 @@ const callsToAction = [
 
 const mobileMenuOpen = ref(false)
 
-import HeaderProfile from "./HeaderProfile/HeaderProfile.vue";
+const { logout } = useAuth();
+
 </script>
