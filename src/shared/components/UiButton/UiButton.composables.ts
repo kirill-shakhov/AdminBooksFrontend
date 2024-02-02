@@ -5,7 +5,8 @@ export function UiButtonComposables(props: UiButtonProps) {
 
     const rootClasses = computed(() => [
         {
-            'ui-button_disabled bg-indigo-300 hover:bg-indigo-300': props.disabled
+            'ui-button_disabled bg-indigo-300 hover:bg-indigo-300': props.disabled,
+            'w-full': props.block
         }
     ]);
 
