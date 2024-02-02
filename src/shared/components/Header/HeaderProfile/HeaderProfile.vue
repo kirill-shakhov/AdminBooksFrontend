@@ -19,9 +19,10 @@
             class="relative py-2 text-sm text-gray-700 dark:text-gray-200">
           <li class="hover:bg-gray-100 dark:hover:bg-gray-100">
             <router-link :to="item.link"
-               class="block text px-4 py-2-sm font-semibold leading-6 text-gray-900">{{
+                         class="block text px-4 py-2-sm font-semibold leading-6 text-gray-900">{{
                 item.name
-              }}</router-link>
+              }}
+            </router-link>
           </li>
         </ul>
         <div class="px-4 py-3">
@@ -36,7 +37,9 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import UiAvatar from "../../UiAvatar/UiAvatar.vue";
 
 import { HeaderProfileComposables } from "./HeaderProfile.composables.ts";
+import { useAuth } from "../../../composables/useAuth/useAuth.ts";
 
-const { headerProfileData, logout } = HeaderProfileComposables();
+const { headerProfileData } = HeaderProfileComposables();
+const { logout } = useAuth();
 
 </script>
