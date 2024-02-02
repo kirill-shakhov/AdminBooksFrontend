@@ -1,7 +1,7 @@
-import $api from "./helpers/createAxiosInstance.ts";
-import { AuthResponse } from "../models/response/AuthResponse.ts";
-import { CheckUserRequest } from "../models/request/CheckUserRequest.ts";
-import { CheckUserResponse } from "../models/response/CheckUserResponse.ts";
+import $api from "./../../../services/api/helpers/createAxiosInstance.ts";
+
+import { CheckUserResponse, CheckUserRequest, AuthResponse } from '../types/index.ts'
+
 import { User } from "../../../shared/composables/useAuth/useAuth.ts";
 
 export default class AuthService {
@@ -24,7 +24,7 @@ export default class AuthService {
     }
 
     static async getUser(): Promise<User> {
-        return $api.get(`/profile`,).then(response => response.data)
+        return $api.get<User>(`/profile`,).then(response => response.data)
     }
 
     static async refresh(): Promise<AuthResponse> {
