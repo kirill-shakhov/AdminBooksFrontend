@@ -14,9 +14,11 @@ const router = createRouter({
 
 // GOOD
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-    const { getUser } = useAuth(); // Получаем функцию getUser
+    const { getUser, user } = useAuth(); // Получаем функцию getUser
 
-    await getUser(); // Вызываем getUser и ждем завершения
+    if (user.value === null) {
+        await getUser(); // Вызываем getUser и ждем завершения
+    }
 
     if (to.name !== 'login' && !isUserAuthorized()) {
         next({ name: 'login' });
