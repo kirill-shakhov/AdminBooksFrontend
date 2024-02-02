@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 import AuthService from "../../../../modules/auth/services/AuthService.ts";
 
 export function HeaderProfileComposables() {
-    const router = useRouter();
+
     const { user } = useAuth();
 
 
@@ -25,19 +25,8 @@ export function HeaderProfileComposables() {
         ]
     });
 
-    const logout = async (): Promise<void> => {
-        try {
-            await AuthService.logout();
-            localStorage.removeItem('token');
-            await router.push('/login');
-
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
     return {
         headerProfileData,
-        logout
     };
 }
