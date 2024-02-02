@@ -10,6 +10,10 @@ export default [
                 name: 'profile',
                 component: () => import('../views/ProfileSettings/ProfileSettings.vue'),
                 meta: { requiresAuth: true, permissions: ['USER', 'ADMIN'] }
+            },
+            {
+                path: '',
+                redirect: '/settings/profile'
             }
         ]
     },
