@@ -1,5 +1,7 @@
 import AuthService from "../../../modules/auth/services/AuthService.ts";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
 
 export interface User {
     activationLink: string;
@@ -16,6 +18,8 @@ export interface User {
 const user = ref<User | null>(null);
 
 export const useAuth = () => {
+    const router = useRouter();
+
     const getUser = async (): Promise<void> => {
         try {
             user.value = await AuthService.getUser();
@@ -28,9 +32,21 @@ export const useAuth = () => {
         return roles.some(role => permissions.includes(role));
     }
 
+    const logout = async (): Promise<void> => {
+        try {
+            await AuthService.logout();
+            localStorage.removeItem('token');
+            await router.push('/login');
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return {
         getUser,
         user,
-        hasAccess
+        hasAccess,
+        logout
     }
 }
