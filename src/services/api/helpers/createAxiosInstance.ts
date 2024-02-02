@@ -1,6 +1,6 @@
 import axios, { HttpStatusCode } from 'axios';
 import type { AxiosRequestConfig } from 'axios';
-import AuthService from '../AuthService.ts';
+import AuthService from '../../../modules/auth/services/AuthService.ts';
 
 const $api = axios.create({
     withCredentials: true,
