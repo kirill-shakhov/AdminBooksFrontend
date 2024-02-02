@@ -124,7 +124,7 @@ export function registrationComposables() {
             const response = await AuthService.registration(formData);
             console.log(response);
             localStorage.setItem('token', response.accessToken);
-            await router.push('/dashboard')
+            await router.push('/')
 
             status.value = 'success';
             loading.value = false;

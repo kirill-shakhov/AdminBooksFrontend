@@ -39,6 +39,7 @@
         <div v-if="data.currentStep > 1">
           <ui-button
               @click="previousStep"
+              block
           >
             previous step
           </ui-button>
@@ -49,6 +50,7 @@
           <ui-button
               :loading="loading"
               @click="validateFirstStep"
+              block
           >
             next step
           </ui-button>
@@ -59,6 +61,7 @@
           <ui-button
               :loading="loading"
               type="submit"
+              block
           >
             register
           </ui-button>

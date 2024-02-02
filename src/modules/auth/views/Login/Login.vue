@@ -49,6 +49,7 @@
         <div>
           <ui-button
               type="submit"
+              block
               :loading="loading"
           >
             login
