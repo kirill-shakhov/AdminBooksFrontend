@@ -27,7 +27,8 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
   type: 'button',
   loading: false,
   size: 'sm',
-  block: false
+  block: false,
+  theme: 'default'
 })
 
 const { rootClasses, tag } = UiButtonComposables(props);

@@ -4,5 +4,6 @@ export interface UiButtonProps {
     type?: string,
     loading?: boolean,
     size?: string,
-    block?: boolean
+    block?: boolean,
+    theme?: 'default' | 'danger';
 }
