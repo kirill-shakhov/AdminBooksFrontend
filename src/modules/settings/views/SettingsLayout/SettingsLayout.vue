@@ -21,8 +21,10 @@
 
       <router-view/>
     </div>
+    <Footer/>
   </div>
 </template>
 <script setup lang="ts">
 import Header from "../../../../shared/components/Header/Header.vue";
+import Footer from "../../../../shared/components/Footer/Footer.vue";
 </script>
