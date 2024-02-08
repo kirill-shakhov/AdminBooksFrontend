@@ -21,7 +21,15 @@
         <div class="w-full px-4 md:w-1/2 ">
           <div class="lg:pl-20">
             <div class="mb-8 ">
-              <span class="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
+              <div class="flex justify-between">
+                <span class="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
+                <ui-button
+                    theme="secondary"
+                    type="button"
+                >
+                  edit
+                </ui-button>
+              </div>
               <h2 class="max-w-xl mt-2 mb-6 text-2xl font-bold md:text-4xl"> {{ book?.title }} </h2>
               <p class="max-w-md text-gray-700 dark:text-gray-400">
                 Genre: {{ book?.genre.name }}
