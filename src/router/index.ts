@@ -16,17 +16,24 @@ const router = createRouter({
 router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
     const { getUser, user } = useAuth(); // Получаем функцию getUser
 
-    if (user.value === null) {
+    // Проверяем, не пытается ли пользователь перейти на страницу логина или регистрации
+    if (to.name === 'login' || to.name === 'register') {
+        next();
+        return; // Завершаем выполнение функции, чтобы предотвратить дальнейшие проверки
+    }
+
+    if (!isUserAuthorized()) {
+        next({ name: 'login' });
+        return; // Добавляем return, чтобы избежать выполнения последующего кода, если пользователь не авторизован
+    }
+
+    if (user.value === null ) {
         await getUser(); // Вызываем getUser и ждем завершения
     }
 
-    if (to.name !== 'login' && !isUserAuthorized()) {
-        next({ name: 'login' });
-    }
-
     await checkAccessToRoute(to, from, next);
-
 });
+
 
 
 export default router;
