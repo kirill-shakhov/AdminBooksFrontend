@@ -6,7 +6,7 @@
       :type="type"
       :loading="loading"
       :class="rootClasses"
-      class="flex justify-center items-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      class="flex justify-center items-center  px-3 py-1.5  font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
   >
     <div v-if="loading">
         <ui-progress-circular/>
@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<UiButtonProps>(), {
   loading: false,
   size: 'sm',
   block: false,
-  theme: 'default'
+  theme: 'primary'
 })
 
 const { rootClasses, tag } = UiButtonComposables(props);
