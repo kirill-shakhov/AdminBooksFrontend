@@ -60,7 +60,6 @@
         <router-link :to="{ name: 'library' }" class="text-sm font-semibold leading-6 text-gray-900">My books
         </router-link>
 
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Page</a>
       </PopoverGroup>
 
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -160,6 +159,7 @@ const callsToAction = [
 ]
 
 const mobileMenuOpen = ref(false)
+
 
 const { logout } = useAuth();
 
