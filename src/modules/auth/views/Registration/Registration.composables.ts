@@ -7,8 +7,7 @@ import { object, string } from "yup";
 import { useForm } from "vee-validate";
 
 import { RegistrationData } from './Registration.types.ts'
-import { CheckUserResponse } from "../../models/response/CheckUserResponse.ts";
-
+import { CheckUserResponse } from "../../types";
 
 export function registrationComposables() {
     const router = useRouter();
