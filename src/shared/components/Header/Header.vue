@@ -28,7 +28,7 @@
             <PopoverPanel
                 class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
               <div class="p-4">
-                <div v-for="item in products" :key="item.name"
+                <div v-for="item in pages" :key="item.name"
                      class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                   <div
                       class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -57,7 +57,9 @@
 
         <router-link :to="{ name: 'dashboard' }" class="text-sm font-semibold leading-6 text-gray-900">Dashboard
         </router-link>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Page</a>
+        <router-link :to="{ name: 'library' }" class="text-sm font-semibold leading-6 text-gray-900">My books
+        </router-link>
+
         <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Page</a>
       </PopoverGroup>
 
@@ -66,7 +68,7 @@
       </div>
 
     </nav>
-    <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+    <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" @click="" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10"/>
       <DialogPanel
           class="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -97,6 +99,12 @@
                   :to="{ name: 'profile' }"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Profile
+              </router-link>
+
+              <router-link
+                  :to="{ name: 'library' }"
+                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                My books
               </router-link>
 
             </div>
@@ -139,7 +147,7 @@ import {
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/solid'
 
-const products = [
+const pages = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
   { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
   { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
