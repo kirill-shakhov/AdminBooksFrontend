@@ -11,7 +11,11 @@
             <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
             <div class="mt-2 flex items-center gap-x-3">
               <!--              <UserCircleIcon class="h-12 w-12 text-gray-300" aria-hidden="true"/>-->
-              <ui-upload-file v-model:value="data.image"/>
+              <ui-upload-file
+                  v-model:value="data.image"
+                  id="3"
+                  :uploaded-img-preview="uploadedImgPreview"
+              />
             </div>
           </div>
         </div>
@@ -81,5 +85,5 @@ import UiUploadFile from '../../../../shared/components/UiUploadFile/UiUploadFil
 import UiNotification from "../../../../shared/components/UiNotification/UiNotification.vue";
 import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 
-const { data, onSubmit, notificationData } = useProfileSettings();
+const { data, onSubmit, notificationData, uploadedImgPreview } = useProfileSettings();
 </script>

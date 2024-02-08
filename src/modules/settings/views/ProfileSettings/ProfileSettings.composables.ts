@@ -1,4 +1,4 @@
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { useAuth } from "../../../../shared/composables/useAuth/useAuth.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
@@ -19,6 +19,8 @@ export function useProfileSettings() {
         email: user.value?.email || '',
         image: `${import.meta.env.VITE_API_URL}/${user.value?.image}`
     })
+
+    const uploadedImgPreview = ref(`${import.meta.env.VITE_API_URL}/${user.value?.image}`)
 
 
     const schema = object().shape({
@@ -52,7 +54,6 @@ export function useProfileSettings() {
             const response = await profileService.changeProfile(formData);
 
             showNotification(response.message, 'success')
-
         } catch (e) {
             console.log(e);
             showNotification(e.response.data.message, 'error')
@@ -68,6 +69,7 @@ export function useProfileSettings() {
     return {
         data,
         onSubmit,
-        notificationData
+        notificationData,
+        uploadedImgPreview
     }
 }
