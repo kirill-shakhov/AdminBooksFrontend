@@ -23,12 +23,12 @@
             <div class="mb-8 ">
               <div class="flex justify-between">
                 <span class="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
-                <ui-button
-                    theme="secondary"
-                    type="button"
-                >
-                  edit
-                </ui-button>
+<!--                <ui-button-->
+<!--                    theme="secondary"-->
+<!--                    type="button"-->
+<!--                >-->
+<!--                  edit-->
+<!--                </ui-button>-->
               </div>
               <h2 class="max-w-xl mt-2 mb-6 text-2xl font-bold md:text-4xl"> {{ book?.title }} </h2>
               <p class="max-w-md text-gray-700 dark:text-gray-400">
