@@ -36,7 +36,6 @@ export function loginComposables() {
             loading.value = true;
 
             const response = await AuthService.login(data.username, data.password);
-            console.log(response);
             localStorage.setItem('token', response.accessToken);
             await router.push('/')
 
