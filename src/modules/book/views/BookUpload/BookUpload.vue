@@ -76,7 +76,7 @@
 
   </form>
 </template>
-<script setup>
+<script setup lang="ts">
 import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
 import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 import UiUploadFile from "../../../../shared/components/UiUploadFile/UiUploadFile.vue";
