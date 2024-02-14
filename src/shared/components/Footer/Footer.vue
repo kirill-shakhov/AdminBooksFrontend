@@ -3,9 +3,9 @@
     <div class="mx-auto max-w-7xl p-6  lg:px-8">
       <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
-          <a href="https://flowbite.com" class="flex items-center">
+          <router-link :to="{ name: 'dashboard' }" class="flex items-center">
             <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
-          </a>
+          </router-link>
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
 

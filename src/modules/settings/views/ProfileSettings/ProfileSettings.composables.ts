@@ -6,6 +6,8 @@ import { profileService } from "../../services/ProfileService.ts";
 
 import { useNotification } from "../../../../shared/components/UiNotification/UiNotification.composables.ts";
 import { Profile } from "./ProfileSettings.types.ts";
+import { AxiosError } from "axios";
+import { UpdateProfileErrorResponse } from "../../types";
 
 const { notificationData, showNotification, } = useNotification();
 
@@ -17,7 +19,8 @@ export function useProfileSettings() {
         firstName: user.value?.firstName || '',
         lastName: user.value?.lastName || '',
         email: user.value?.email || '',
-        image: `${import.meta.env.VITE_API_URL}/${user.value?.image}`
+        image: `${import.meta.env.VITE_API_URL}/${user.value?.image}`,
+        imageFile: null
     })
 
     const uploadedImgPreview = ref(`${import.meta.env.VITE_API_URL}/${user.value?.image}`)
@@ -41,8 +44,8 @@ export function useProfileSettings() {
         formData.append('lastName', data.lastName);
         formData.append('email', data.email);
 
-        if (data.image instanceof File) {
-            formData.append('image', data.image);
+        if (data.imageFile !== null) {
+            formData.append('image', data.imageFile);
         }
 
         return formData;
@@ -54,9 +57,16 @@ export function useProfileSettings() {
             const response = await profileService.changeProfile(formData);
 
             showNotification(response.message, 'success')
-        } catch (e) {
-            console.log(e);
-            showNotification(e.response.data.message, 'error')
+        } catch (e: unknown) {
+
+            const axiosError = e as AxiosError<UpdateProfileErrorResponse>;
+            if (axiosError.response?.data?.message) {
+                showNotification(axiosError.response.data.message, 'error');
+            } else {
+                // Если нет, выводим общее сообщение об ошибке
+                console.log(e);
+                showNotification('Произошла неизвестная ошибка', 'error');
+            }
         }
     }
 

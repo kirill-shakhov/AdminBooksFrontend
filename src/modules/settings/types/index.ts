@@ -12,3 +12,7 @@ export interface UpdateProfileResponse {
     message: string,
     userData: UpdateProfileUserData
 }
+
+export interface UpdateProfileErrorResponse {
+    message: string;
+}

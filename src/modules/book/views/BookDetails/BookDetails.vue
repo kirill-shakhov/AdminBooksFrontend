@@ -135,11 +135,12 @@ const bookImage = ref<string>('');
 const bookFile = ref<string>('');
 const loading = ref<boolean>(true);
 const isOpenModal = ref<boolean>(false);
+const bookId = route.params.bookId as string;
 
 onMounted(async () => {
 
   try {
-    book.value = await bookService.getBook(route.params.bookId);
+    book.value = await bookService.getBook(bookId);
     if (book.value?.image) bookImage.value = `${import.meta.env.VITE_API_URL}/${book.value?.image}`
     if (book.value?.book) bookFile.value = `${import.meta.env.VITE_API_URL}/${book.value?.book}`
     loading.value = false;
@@ -179,13 +180,13 @@ const openModal = (): void => {
   isOpenModal.value = true;
 }
 
-const handleModalChange = (newState): void => {
+const handleModalChange = (newState: boolean): void => {
   isOpenModal.value = newState;
 };
 
 const deleteBook = async () => {
   try {
-    await bookService.deleteBook(route.params.bookId);
+    await bookService.deleteBook(bookId);
     await router.push({ name: 'library' })
   } catch (e) {
     console.log(e);

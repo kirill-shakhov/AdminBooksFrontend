@@ -3,4 +3,5 @@ export interface Profile {
     lastName: string;
     email: string;
     image: string;
+    imageFile: File | null;
 }

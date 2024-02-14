@@ -17,10 +17,8 @@
 
 <script setup lang="ts">
 import { defineEmits, ref } from 'vue';
-import { useAuth } from "../../composables/useAuth/useAuth.ts";
-import { Props, UploadTYpe } from "./UIUploadFile.types.ts";
+import { Props } from "./UIUploadFile.types.ts";
 
-const { user } = useAuth();
 const avatarPreview = ref<string>('');
 
 

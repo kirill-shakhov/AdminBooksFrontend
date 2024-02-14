@@ -12,7 +12,7 @@
             <div class="mt-2 flex items-center gap-x-3">
               <!--              <UserCircleIcon class="h-12 w-12 text-gray-300" aria-hidden="true"/>-->
               <ui-upload-file
-                  v-model:value="data.image"
+                  v-model:value="data.imageFile"
                   id="3"
                   :uploaded-img-preview="uploadedImgPreview"
               />

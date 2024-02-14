@@ -25,10 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-
-const open = ref(true)
 
 interface Props {
   isOpen: boolean

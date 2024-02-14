@@ -13,7 +13,9 @@
   ```
 -->
 <template>
-  <ui-upload-file v-model:value="props.formData.image"/>
+  <ui-upload-file id="5"
+                  v-model:value="props.formData.image"
+  />
 </template>
 
 <script lang="ts" setup>

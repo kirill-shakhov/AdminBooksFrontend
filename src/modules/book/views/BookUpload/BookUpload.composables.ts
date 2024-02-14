@@ -4,6 +4,8 @@ import { object, string } from "yup";
 import { useForm } from "vee-validate";
 import { useNotification } from "../../../../shared/components/UiNotification/UiNotification.composables.ts";
 import { bookService } from "../../services/bookService.ts";
+import { AxiosError } from "axios";
+import { UploadBookErrorResponse } from "../../types";
 
 const { notificationData, showNotification, } = useNotification();
 const loading = ref(false);
@@ -56,9 +58,15 @@ export function useBookUpload() {
             loading.value = false;
             showNotification(response.message, 'success')
         } catch (e) {
-            console.log(e);
             loading.value = false;
-            showNotification(e.response.data.message, 'error')
+            const axiosError = e as AxiosError<UploadBookErrorResponse>;
+            if (axiosError.response?.data?.message) {
+                showNotification(axiosError.response.data.message, 'error');
+            } else {
+                // Если нет, выводим общее сообщение об ошибке
+                console.log(e);
+                showNotification('Произошла неизвестная ошибка', 'error');
+            }
         }
     }
 

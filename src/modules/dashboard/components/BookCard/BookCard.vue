@@ -67,11 +67,8 @@
 import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 
 import { Book } from "../../../book/types";
-import { useRoute } from "vue-router";
 
 const props = defineProps<Book>();
 const bookImage = `${import.meta.env.VITE_API_URL}/${props.image}`;
-
-const route = useRoute();
 
 </script>

@@ -2,9 +2,6 @@ import { reactive } from "vue";
 import { HeaderProfileData } from "./HeaderProfile.types.ts";
 
 import { useAuth } from "../../../composables/useAuth/useAuth.ts";
-import { useRouter } from 'vue-router';
-
-import AuthService from "../../../../modules/auth/services/AuthService.ts";
 
 export function HeaderProfileComposables() {
 

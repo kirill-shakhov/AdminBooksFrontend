@@ -44,7 +44,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 
 import { bookService } from "../../../book/services/bookService.ts";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { Book } from "../../../book/types";
 import BookCard from "../BookCard/BookCard.vue";
 

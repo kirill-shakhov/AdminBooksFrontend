@@ -1,5 +1,4 @@
-import axios, { HttpStatusCode } from 'axios';
-import type { AxiosRequestConfig } from 'axios';
+import axios, { HttpStatusCode, AxiosRequestConfig } from 'axios';
 import AuthService from '../../../modules/auth/services/AuthService.ts';
 
 const $api = axios.create({
@@ -29,7 +28,8 @@ function createRetryTracker() {
 
 const retryTracker = createRetryTracker();
 
-async function handleUnauthorizedError(originalConfig: AxiosRequestConfig, requestUrl: string) {
+// originalConfig: AxiosRequestConfig, requestUrl: string
+async function handleUnauthorizedError(originalConfig:AxiosRequestConfig, requestUrl: string) {
   try {
     const { accessToken } = await AuthService.refresh();
 
