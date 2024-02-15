@@ -84,6 +84,7 @@ import { useProfileSettings } from './ProfileSettings.composables.ts';
 import UiUploadFile from '../../../../shared/components/UiUploadFile/UiUploadFile.vue';
 import UiNotification from "../../../../shared/components/UiNotification/UiNotification.vue";
 import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
+// commit
 
 const { data, onSubmit, notificationData, uploadedImgPreview } = useProfileSettings();
 </script>
