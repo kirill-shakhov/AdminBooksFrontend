@@ -151,6 +151,30 @@ onMounted(async () => {
 })
 
 
+// Определение типа для маппинга расширений файлов к MIME-типам
+interface MimeTypes {
+  [key: string]: string;
+}
+
+const mimeTypes: MimeTypes = {
+  '.epub': 'application/epub+zip',
+  '.mobi': 'application/x-mobipocket-ebook',
+  '.azw': 'application/vnd.amazon.ebook',
+  '.pdf': 'application/pdf',
+  '.fb2': 'application/x-fictionbook+xml',
+  '.txt': 'text/plain',
+  '.html': 'text/html',
+  '.doc': 'application/msword',
+  '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+};
+
+// Функция для определения MIME-типа файла по его URL
+const getMimeType = (url: string): string => {
+  const extension = url.slice(url.lastIndexOf('.'));
+  return mimeTypes[extension] || 'application/octet-stream'; // 'application/octet-stream' как тип по умолчанию
+};
+
+
 const downloadBook = async () => {
   try {
     const response = await axios({
@@ -159,11 +183,16 @@ const downloadBook = async () => {
       responseType: 'blob', // Получение файла в формате Blob
     });
 
-    // Создание URL для скачивания файла
-    const url = window.URL.createObjectURL(new Blob([response.data]));
+    // Определение MIME-типа на основе URL файла
+    const mimeType = getMimeType(bookFile.value);
+
+    // Создание URL для скачивания файла с определённым MIME-типом
+    const url = window.URL.createObjectURL(new Blob([response.data], { type: mimeType }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', book.value?.title || 'downloadedBook'); // Название файла для скачивания
+    const fileName = book.value?.title || 'downloadedBook';
+    const fileExtension = mimeType.split('/')[1].split('+')[0]; // Простая попытка извлечь расширение из MIME-типа
+    link.setAttribute('download', `${fileName}.${fileExtension}`); // Добавление расширения файла к названию
     document.body.appendChild(link);
     link.click(); // Инициирование скачивания
 
@@ -174,6 +203,7 @@ const downloadBook = async () => {
     console.error('Ошибка скачивания файла:', error);
   }
 };
+
 
 
 const openModal = (): void => {
