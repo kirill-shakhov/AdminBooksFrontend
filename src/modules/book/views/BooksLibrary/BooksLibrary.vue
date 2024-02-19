@@ -2,7 +2,7 @@
   <div class="books-library w-full py-1 md:w-2/3 lg:w-3/4">
     <div
         v-if="loading"
-        class="flex flex-wrap gap-4"
+        class="flex flex-wrap gap-4 justify-center md:justify-start"
     >
       <book-card-skeleton/>
       <book-card-skeleton/>
@@ -11,7 +11,7 @@
 
     <div
         v-else
-        class="flex flex-wrap gap-4">
+        class="flex flex-wrap gap-4 justify-center md:justify-start">
       <book-card
           v-for="book in books" :key="book._id"
           :title="book.title"
