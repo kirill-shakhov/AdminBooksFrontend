@@ -2,9 +2,11 @@
   <div class="books-library w-full py-1 md:w-2/3 lg:w-3/4">
     <div
         v-if="loading"
-        class="h-full flex items-center justify-center"
+        class="flex flex-wrap gap-4"
     >
-      <ui-progress-circular/>
+      <book-card-skeleton/>
+      <book-card-skeleton/>
+      <book-card-skeleton/>
     </div>
 
     <div
@@ -29,6 +31,7 @@ import { Book } from "../../types";
 import { bookService } from "../../services/bookService.ts";
 import BookCard from "../../../dashboard/components/BookCard/BookCard.vue";
 import UiProgressCircular from "../../../../shared/components/UiProgressCircular/UiProgressCircular.vue";
+import BookCardSkeleton from "../../../dashboard/components/BookCard/BookCardSkeleton/BookCardSkeleton.vue";
 
 const books = ref<Book[]>([]);
 const loading = ref(true);
