@@ -5,7 +5,7 @@
         class="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
       <img
           :src="props.image"
-          class="w-full  max-h-72 object-cover"
+          class="w-full h-72 object-cover"
           alt="ui/ux review check"/>
       <div
           class="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60">
