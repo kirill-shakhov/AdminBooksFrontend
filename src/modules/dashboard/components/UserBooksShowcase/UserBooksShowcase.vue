@@ -1,7 +1,7 @@
 <template>
   <div class="px-6">
 
-    <div v-if="loading">
+    <div v-if="loading" class="flex flex-wrap gap-4 justify-center md:justify-start">
       <book-card-skeleton/>
     </div>
 
