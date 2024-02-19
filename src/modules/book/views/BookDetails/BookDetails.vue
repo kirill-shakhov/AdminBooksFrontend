@@ -13,7 +13,7 @@
         <div class="w-full px-4 md:w-1/2 ">
           <div class="overflow-hidden">
             <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-              <img :src='bookImage' alt=""
+              <img :src='book?.image' alt=""
                    class="object-cover w-full lg:h-full ">
             </div>
           </div>
@@ -64,7 +64,7 @@
 
               <div class="w-full px-4 mb-4 lg:mb-4 sm:order-2 md:order-3">
                 <UiButton
-                    :href="bookFile"
+                    :href="book?.book"
                     target="_blank"
                     block
                     type="button"
@@ -131,8 +131,6 @@ const route = useRoute();
 const router = useRouter();
 
 const book = ref<Book | null>(null);
-const bookImage = ref<string>('');
-const bookFile = ref<string>('');
 const loading = ref<boolean>(true);
 const isOpenModal = ref<boolean>(false);
 const bookId = route.params.bookId as string;
@@ -141,8 +139,6 @@ onMounted(async () => {
 
   try {
     book.value = await bookService.getBook(bookId);
-    if (book.value?.image) bookImage.value = `${import.meta.env.VITE_API_URL}/${book.value?.image}`
-    if (book.value?.book) bookFile.value = `${import.meta.env.VITE_API_URL}/${book.value?.book}`
     loading.value = false;
 
   } catch (error) {
@@ -178,13 +174,13 @@ const getMimeType = (url: string): string => {
 const downloadBook = async () => {
   try {
     const response = await axios({
-      url: bookFile.value,
+      url: book.value?.book,
       method: 'GET',
       responseType: 'blob', // Получение файла в формате Blob
     });
 
     // Определение MIME-типа на основе URL файла
-    const mimeType = getMimeType(bookFile.value);
+    const mimeType = getMimeType((book.value?.book as  string));
 
     // Создание URL для скачивания файла с определённым MIME-типом
     const url = window.URL.createObjectURL(new Blob([response.data], { type: mimeType }));
