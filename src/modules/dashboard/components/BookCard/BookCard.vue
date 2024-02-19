@@ -1,9 +1,10 @@
 <template>
-  <div class="relative flex w-full max-w-[18rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
+  <router-link :to="{ name: 'Book', params: { bookId: _id } }"
+               class="relative flex w-full max-w-[18rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
     <div
         class="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
       <img
-          :src="bookImage"
+          :src="props.image"
           class="w-full  max-h-72 object-cover"
           alt="ui/ux review check"/>
       <div
@@ -46,21 +47,13 @@
 
     </div>
     <div class="p-6 pt-3 mt-auto">
-
-
-      <router-link
-          class="w-full h-full"
-          :to="{ name: 'Book', params: { bookId: _id } }"
+      <ui-button
+          block
       >
-        <ui-button
-            block
-
-        >
-          Read more
-        </ui-button>
-      </router-link>
+        Read more
+      </ui-button>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup lang="ts">
@@ -69,6 +62,5 @@ import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 import { Book } from "../../../book/types";
 
 const props = defineProps<Book>();
-const bookImage = `${import.meta.env.VITE_API_URL}/${props.image}`;
 
 </script>
