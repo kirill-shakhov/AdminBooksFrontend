@@ -1,7 +1,12 @@
 <template>
   <div class="px-6">
+
+    <div v-if="loading">
+      <book-card-skeleton/>
+    </div>
+
     <swiper
-        v-if="!loading"
+        v-else
         :freeMode="true"
         :modules="[FreeMode, Autoplay]"
         :autoplay="{
@@ -47,6 +52,7 @@ import { bookService } from "../../../book/services/bookService.ts";
 import { onMounted, ref } from "vue";
 import { Book } from "../../../book/types";
 import BookCard from "../BookCard/BookCard.vue";
+import BookCardSkeleton from "../BookCard/BookCardSkeleton/BookCardSkeleton.vue";
 
 
 const books = ref<Book[]>([]);
