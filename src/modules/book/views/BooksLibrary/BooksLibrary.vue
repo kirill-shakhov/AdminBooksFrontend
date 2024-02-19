@@ -30,7 +30,6 @@ import { onMounted, ref } from "vue";
 import { Book } from "../../types";
 import { bookService } from "../../services/bookService.ts";
 import BookCard from "../../../dashboard/components/BookCard/BookCard.vue";
-import UiProgressCircular from "../../../../shared/components/UiProgressCircular/UiProgressCircular.vue";
 import BookCardSkeleton from "../../../dashboard/components/BookCard/BookCardSkeleton/BookCardSkeleton.vue";
 
 const books = ref<Book[]>([]);
