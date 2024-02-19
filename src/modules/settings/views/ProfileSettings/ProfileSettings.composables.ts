@@ -19,11 +19,11 @@ export function useProfileSettings() {
         firstName: user.value?.firstName || '',
         lastName: user.value?.lastName || '',
         email: user.value?.email || '',
-        image: `${import.meta.env.VITE_API_URL}/${user.value?.image}`,
+        image: `${user.value?.image}`,
         imageFile: null
     })
 
-    const uploadedImgPreview = ref(`${import.meta.env.VITE_API_URL}/${user.value?.image}`)
+    const uploadedImgPreview = ref(`${user.value?.image}`)
 
 
     const schema = object().shape({
@@ -74,6 +74,7 @@ export function useProfileSettings() {
     const onSubmit = handleSubmit(async (): Promise<void> => {
         await changeProfileInfo();
     })
+
 
 
     return {
