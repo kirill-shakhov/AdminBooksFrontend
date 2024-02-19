@@ -39,6 +39,4 @@
 </template>
 
 <script setup lang="ts">
-import UiButton from "../../../../../shared/components/UiButton/UiButton.vue";
-
 </script>
