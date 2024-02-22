@@ -14,6 +14,7 @@
             disableOnInteraction: false,
            }"
         class="userBooksShowcase"
+
         :breakpoints="{
           320: {
             slidesPerView: 1
@@ -28,7 +29,11 @@
           },
         }"
     >
-      <swiper-slide v-for="book in books" :key="book._id">
+      <swiper-slide
+          v-for="book in books"
+          :key="book._id"
+          style="height: auto"
+      >
         <book-card
             :title="book.title"
             :image="book.image"
