@@ -41,6 +41,7 @@
             :book="book.book"
             :genre="book.genre"
             :_id="book._id"
+            class="h-full"
         />
       </swiper-slide>
     </swiper>
