@@ -118,7 +118,6 @@ import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { bookService } from "../../services/bookService.ts";
 import { Book } from "../../types";
-import UiProgressCircular from "../../../../shared/components/UiProgressCircular/UiProgressCircular.vue";
 import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 import axios from "axios";
 
