@@ -41,7 +41,7 @@
 
             </div>
             <div class="flex flex-wrap items-center -mx-4">
-              <div class="w-full px-4 mb-4 lg:w-1/2 lg:mb-4 sm:order-1 md:order-1">
+              <div class="w-full px-4 mb-4 lg:w-1/2 lg:mb-4 order-1 lg:order-1">
                 <UiButton
                     @click="downloadBook"
                     block
@@ -51,7 +51,7 @@
                 </UiButton>
               </div>
 
-              <div class="w-full px-4 mb-4 lg:mb-4 lg:w-1/2  sm:order-3 md:order-2">
+              <div class="w-full px-4 mb-4 lg:mb-4 lg:w-1/2 order-3 lg:order-2">
                 <UiButton
                     @click="openModal"
                     block
@@ -62,7 +62,7 @@
                 </UiButton>
               </div>
 
-              <div class="w-full px-4 mb-4 lg:mb-4 sm:order-2 md:order-3">
+              <div class="w-full px-4 mb-4 lg:mb-4 order-2 lg:order-3">
                 <UiButton
                     :href="book?.book"
                     target="_blank"
