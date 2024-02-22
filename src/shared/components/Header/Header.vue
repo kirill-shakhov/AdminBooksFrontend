@@ -10,10 +10,13 @@
       </div>
 
       <div class="flex lg:flex-1">
-        <router-link :to="{ name: 'dashboard' }" class="-m-1.5 p-1.5">
+
+        <router-link :to="{ name: 'dashboard' }" class="-m-1.5 p-1.5 hidden lg:block">
           <span class="sr-only">Your Company</span>
           <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
         </router-link>
+
+        <header-profile class="lg:hidden"/>
       </div>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
 

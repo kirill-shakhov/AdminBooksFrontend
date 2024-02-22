@@ -9,7 +9,7 @@
                 leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
 
       <PopoverPanel
-          class="absolute -left-8 top-full z-10 divide-y divide-gray-100 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+          class="absolute right-0 top-full z-10 divide-y divide-gray-100 mt-3 md:w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
         <div class="px-4 py-3 text-sm text-gray-900">
           <div>{{ headerProfileData.user.fullName }}</div>
           <div class="font-medium truncate">{{ headerProfileData.user.email }}</div>
