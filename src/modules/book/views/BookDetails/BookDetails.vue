@@ -4,7 +4,7 @@
         v-if="loading"
         class="h-full flex items-center justify-center"
     >
-      <ui-progress-circular/>
+      <book-details-skeleton/>
     </div>
 
     <div v-else
@@ -126,6 +126,7 @@ import { DialogTitle } from '@headlessui/vue'
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 
 import UiModal from "../../../../shared/components/UiModal/UiModal.vue";
+import BookDetailsSkeleton from "./BookDetailsSkeleton/BookDetailsSkeleton.vue";
 
 const route = useRoute();
 const router = useRouter();
