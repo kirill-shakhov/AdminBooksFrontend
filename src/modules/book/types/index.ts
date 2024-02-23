@@ -1,4 +1,3 @@
-
 export interface Book {
     _id: string;
     title: string;
@@ -26,10 +25,26 @@ export interface UploadBookResponse {
         author: string,
         user: string,
         _id: string,
-        __v:number
+        __v: number
     }
 }
 
 export interface UploadBookErrorResponse {
     message: string;
+}
+
+export interface Genre {
+    name: string;
+}
+
+export interface GenresResponse {
+    genres: Genre[];
+}
+
+export interface Author {
+    name: string;
+}
+
+export interface AuthorsResponse {
+    authors: Author[];
 }
