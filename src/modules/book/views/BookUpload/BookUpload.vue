@@ -22,6 +22,14 @@
                 name="genreName"
                 type="text"
             />
+
+            <div class="mt-2">
+              <RecentItemsSelector
+                  v-if="recentGenres"
+                  :list="recentGenres"
+                  @select="setGenreName"
+              />
+            </div>
           </div>
 
           <div class="sm:col-span-4">
@@ -30,6 +38,14 @@
                 label="Author"
                 name="authorName"
                 type="text"/>
+
+            <div class="mt-2">
+              <RecentItemsSelector
+                  v-if="recentAuthors"
+                  :list="recentAuthors"
+                  @select="setAuthorName"
+              />
+            </div>
           </div>
 
         </div>
@@ -39,7 +55,7 @@
         <div class="col-span-full">
           <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
           <div class="mt-2 flex items-center gap-x-3">
-            <!--              <UserCircleIcon class="h-12 w-12 text-gray-300" aria-hidden="true"/>-->
+
             <ui-upload-file
                 id="1"
                 v-model:value="data.image"
@@ -49,7 +65,7 @@
         <div class="col-span-full">
           <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Book</label>
           <div class="mt-2 flex items-center gap-x-3">
-            <!--              <UserCircleIcon class="h-12 w-12 text-gray-300" aria-hidden="true"/>-->
+
             <ui-upload-file
                 id="2"
                 v-model:value="data.book"
@@ -69,10 +85,10 @@
 
     </div>
 
-        <ui-notification
-            :status="notificationData.status"
-            :message="notificationData.message"
-        />
+    <ui-notification
+        :status="notificationData.status"
+        :message="notificationData.message"
+    />
 
   </form>
 </template>
@@ -81,8 +97,16 @@ import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
 import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
 import UiUploadFile from "../../../../shared/components/UiUploadFile/UiUploadFile.vue";
 import UiNotification from "../../../../shared/components/UiNotification/UiNotification.vue";
-import {useBookUpload} from "./BookUpload.composables.ts";
+import { useBookUpload } from "./BookUpload.composables.ts";
+import RecentItemsSelector from "../../components/RecentItemsSelector/RecentItemsSelector.vue";
 
-const {data, loading,  onSubmit,notificationData } = useBookUpload();
+const { data, loading, onSubmit, notificationData, recentGenres, recentAuthors } = useBookUpload();
+const setGenreName = (genreName: string): void => {
+  data.genreName = genreName;
+};
+
+const setAuthorName = (authorName: string): void => {
+  data.authorName = authorName;
+};
 
 </script>

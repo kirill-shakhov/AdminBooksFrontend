@@ -1,16 +1,45 @@
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { UploadBookData } from "./BookUpload.types.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
 import { useNotification } from "../../../../shared/components/UiNotification/UiNotification.composables.ts";
 import { bookService } from "../../services/bookService.ts";
 import { AxiosError } from "axios";
-import { UploadBookErrorResponse } from "../../types";
+import { Author, Genre, UploadBookErrorResponse } from "../../types";
 
 const { notificationData, showNotification, } = useNotification();
 const loading = ref(false);
 
 export function useBookUpload() {
+
+    const recentGenres = ref<null | Genre[]>(null);
+    const recentAuthors = ref<null | Author[]>(null);
+    ``
+    const getRecentGenres = async (): Promise<void> => {
+        try {
+            const { genres } = await bookService.getGenres();
+            recentGenres.value = genres;
+        } catch (e) {
+            console.log(e);
+            recentGenres.value = [];
+        }
+    }
+    const getRecentAuthors = async (): Promise<void> => {
+        try {
+            const { authors } = await bookService.getAuthors();
+            recentAuthors.value = authors;
+
+        } catch (e) {
+            console.log(e);
+            recentAuthors.value = [];
+        }
+    }
+
+    onMounted(async () => {
+        console.log('старт');
+        await getRecentGenres();
+        await getRecentAuthors();
+    })
 
     const data = reactive<UploadBookData>({
         title: '',
@@ -79,6 +108,8 @@ export function useBookUpload() {
         data,
         onSubmit,
         notificationData,
-        loading
+        loading,
+        recentGenres,
+        recentAuthors
     }
 }
