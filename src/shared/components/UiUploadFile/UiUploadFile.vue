@@ -9,14 +9,14 @@
       <label :for="`uploadFile-${id}`"
              class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
         Upload
-        <input type="file" @change="handleFileChange" accept="image/*" :id="`uploadFile-${id}`" class="hidden"/>
+        <input type="file" @change="handleFileChange" :accept="acceptedTypes" :id="`uploadFile-${id}`" class="hidden"/>
       </label>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref } from 'vue';
+import { computed, defineEmits, ref } from 'vue';
 import { Props } from "./UIUploadFile.types.ts";
 
 const avatarPreview = ref<string>('');
@@ -41,6 +41,8 @@ const acceptedDocumentTypes = [
   'application/msword',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ];
+
+const acceptedTypes = computed(() => [...acceptedImageTypes, ...acceptedDocumentTypes].join(','));
 
 function createImagePreview(file: File) {
   const reader = new FileReader();
