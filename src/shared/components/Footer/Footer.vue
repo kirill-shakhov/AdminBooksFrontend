@@ -4,7 +4,10 @@
       <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
           <router-link :to="{ name: 'dashboard' }" class="flex items-center">
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""/>
+            <Logo
+                style="width: 60px"
+                theme="light"
+            />
           </router-link>
         </div>
         <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -68,6 +71,8 @@
 
 <script setup lang="ts">
 
+
+import Logo from "../Logo/Logo.vue";
 
 const menuList = [
   {
