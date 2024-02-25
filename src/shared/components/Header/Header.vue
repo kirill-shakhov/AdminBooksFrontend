@@ -10,7 +10,6 @@
       </div>
 
       <div class="flex lg:flex-1">
-
         <router-link :to="{ name: 'dashboard' }" class="-m-1.5 p-1.5 hidden lg:block outline-none">
           <span class="sr-only">Your Company</span>
           <Logo
@@ -57,6 +56,12 @@
             <div class="space-y-2 py-6">
 
               <div class="space-y-2 py-6">
+                <router-link
+                    :to="{ name: 'dashboard' }"
+                    class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  Main
+                </router-link>
+                
                 <Disclosure as="div" class="-mx-3" v-slot="{ open }">
                   <DisclosureButton
                       class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
@@ -75,12 +80,6 @@
                   </DisclosurePanel>
                 </Disclosure>
               </div>
-
-              <router-link
-                  :to="{ name: 'dashboard' }"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                Main
-              </router-link>
 
               <router-link
                   :to="{ name: 'profile' }"
