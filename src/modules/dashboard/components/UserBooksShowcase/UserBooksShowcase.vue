@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6">
+  <div>
 
     <div v-if="loading" class="flex flex-wrap gap-4 justify-center md:justify-start">
       <book-card-skeleton/>
@@ -17,10 +17,10 @@
 
         :breakpoints="{
           320: {
-            slidesPerView: 1
+            slidesPerView: 1,
           },
 
-          700: {
+          576: {
             slidesPerView: 2
           },
 
