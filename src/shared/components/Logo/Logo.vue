@@ -33,7 +33,7 @@ import { computed } from "vue";
 type Theme = 'dark' | 'light';
 
 interface Props {
-  theme: Theme;
+  theme?: Theme;
 }
 
 const props = withDefaults(defineProps<Props>(), {
