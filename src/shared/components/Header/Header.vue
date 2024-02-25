@@ -63,11 +63,15 @@
                     Book
                     <ChevronDownIcon :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']" aria-hidden="true"/>
                   </DisclosureButton>
+
                   <DisclosurePanel class="mt-2 space-y-2">
-                    <DisclosureButton v-for="item in [...childrenPages]" :key="item.name" as="a" :href="item.href"
-                                      class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                      {{ item.name }}
-                    </DisclosureButton>
+                    <router-link v-for="item in [...childrenPages]" :key="item.name" :to="{name: item.href}">
+                      <DisclosureButton as="span"
+                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                        {{ item.name }}
+                      </DisclosureButton>
+                    </router-link>
+
                   </DisclosurePanel>
                 </Disclosure>
               </div>
@@ -101,9 +105,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import HeaderProfile from "./HeaderProfile/HeaderProfile.vue";
 import { useAuth } from "../../composables/useAuth/useAuth.ts";
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 import {
   Dialog,
@@ -122,13 +128,19 @@ import {
 import Logo from "../Logo/Logo.vue";
 
 const mobileMenuOpen = ref(false)
+const route = useRoute()
+
+watch(route, (to, from) => {
+  // Как только происходит изменение маршрута, закрываем мобильное меню
+  mobileMenuOpen.value = false
+})
 
 
 const { logout } = useAuth();
 
 const childrenPages = [
-  { name: 'Library', description: 'book library', href: '/books/library' },
-  { name: 'Upload', description: 'upload a new book', href: '/books/upload-book' },
+  { name: 'Library', description: 'book library', href: 'library' },
+  { name: 'Upload', description: 'upload a new book', href: 'uploadBook' },
 
 ]
 
