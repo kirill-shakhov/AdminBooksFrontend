@@ -22,7 +22,7 @@
       </div>
       <PopoverGroup class="hidden lg:flex lg:gap-x-12">
 
-        <router-link :to="{ name: 'dashboard' }" class="text-sm font-semibold leading-6 text-gray-900">Dashboard
+        <router-link :to="{ name: 'dashboard' }" class="text-sm font-semibold leading-6 text-gray-900">Main
         </router-link>
         <router-link :to="{ name: 'library' }" class="text-sm font-semibold leading-6 text-gray-900">My books
         </router-link>
@@ -34,7 +34,8 @@
       </div>
 
     </nav>
-    <Dialog as="div" class="lg:hidden" v-if="mobileMenuOpen" @close="mobileMenuOpen = false" @click="" :open="mobileMenuOpen">
+    <Dialog as="div" class="lg:hidden" v-if="mobileMenuOpen" @close="mobileMenuOpen = false" @click=""
+            :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10"/>
       <DialogPanel
           class="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -55,22 +56,32 @@
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
 
+              <div class="space-y-2 py-6">
+                <Disclosure as="div" class="-mx-3" v-slot="{ open }">
+                  <DisclosureButton
+                      class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    Book
+                    <ChevronDownIcon :class="[open ? 'rotate-180' : '', 'h-5 w-5 flex-none']" aria-hidden="true"/>
+                  </DisclosureButton>
+                  <DisclosurePanel class="mt-2 space-y-2">
+                    <DisclosureButton v-for="item in [...childrenPages]" :key="item.name" as="a" :href="item.href"
+                                      class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                      {{ item.name }}
+                    </DisclosureButton>
+                  </DisclosurePanel>
+                </Disclosure>
+              </div>
+
               <router-link
                   :to="{ name: 'dashboard' }"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                Dashboard
+                Main
               </router-link>
 
               <router-link
                   :to="{ name: 'profile' }"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Profile
-              </router-link>
-
-              <router-link
-                  :to="{ name: 'library' }"
-                  class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                My books
               </router-link>
 
             </div>
@@ -98,10 +109,15 @@ import {
   Dialog,
   DialogPanel,
   PopoverGroup,
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel
+
 } from '@headlessui/vue'
 import {
   Bars3Icon,
   XMarkIcon,
+  ChevronDownIcon
 } from '@heroicons/vue/24/outline'
 import Logo from "../Logo/Logo.vue";
 
@@ -109,5 +125,12 @@ const mobileMenuOpen = ref(false)
 
 
 const { logout } = useAuth();
+
+const childrenPages = [
+  { name: 'Library', description: 'book library', href: '/books/library' },
+  { name: 'Upload', description: 'upload a new book', href: '/books/upload-book' },
+
+]
+
 
 </script>
