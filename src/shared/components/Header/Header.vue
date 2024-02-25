@@ -11,7 +11,7 @@
 
       <div class="flex lg:flex-1">
 
-        <router-link :to="{ name: 'dashboard' }" class="-m-1.5 p-1.5 hidden lg:block">
+        <router-link :to="{ name: 'dashboard' }" class="-m-1.5 p-1.5 hidden lg:block outline-none">
           <span class="sr-only">Your Company</span>
           <Logo
               style="width: 60px"
