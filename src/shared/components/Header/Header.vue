@@ -105,7 +105,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import HeaderProfile from "./HeaderProfile/HeaderProfile.vue";
 import { useAuth } from "../../composables/useAuth/useAuth.ts";
 import { watch } from 'vue'
@@ -130,8 +130,7 @@ import Logo from "../Logo/Logo.vue";
 const mobileMenuOpen = ref(false)
 const route = useRoute()
 
-watch(route, (to, from) => {
-  // Как только происходит изменение маршрута, закрываем мобильное меню
+watch(route, () => {
   mobileMenuOpen.value = false
 })
 
