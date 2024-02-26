@@ -46,7 +46,7 @@
             v-model:value="data.password"
             label="password"
             name="password"
-            type="text"
+            type="password"
         />
 
         <div>
