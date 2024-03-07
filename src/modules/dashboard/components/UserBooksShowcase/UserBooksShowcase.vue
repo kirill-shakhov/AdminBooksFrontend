@@ -54,11 +54,11 @@ import { FreeMode, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
-import { bookService } from "../../../book/services/bookService.ts";
 import { onMounted, ref } from "vue";
-import { Book } from "../../../book/types";
 import BookCard from "../BookCard/BookCard.vue";
 import BookCardSkeleton from "../BookCard/BookCardSkeleton/BookCardSkeleton.vue";
+import { bookApi } from "@/services/api/controllers/bookApi";
+import { Book } from "@/modules/book/static/types";
 
 
 const books = ref<Book[]>([]);
@@ -66,13 +66,12 @@ const loading = ref(true);
 
 onMounted(async () => {
   try {
-    const response = await bookService.getUserBooks(); // Попытка загрузить книги
+    const response = await bookApi.getUserBooks(); // Попытка загрузить книги
     books.value = response.books;
     loading.value = false;
 
   } catch (error) {
     console.error("Ошибка при загрузке книг:", error);
-    // Обработка ошибок, если что-то пошло не так
   }
 });
 
