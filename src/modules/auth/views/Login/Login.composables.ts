@@ -2,11 +2,11 @@ import { reactive, ref } from "vue";
 import { useRouter } from 'vue-router';
 
 
-import AuthService from "../../services/AuthService.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
 import { LoginTypes } from "./Login.types.ts";
 import axios from 'axios';
+import { authApi } from "@/services/api/controllers/authApi";
 
 
 export function loginComposables() {
@@ -35,7 +35,7 @@ export function loginComposables() {
             status.value = 'pending';
             loading.value = true;
 
-            const response = await AuthService.login(data.username, data.password);
+            const response = await authApi.login(data.username, data.password);
             localStorage.setItem('token', response.accessToken);
             await router.push('/')
 
