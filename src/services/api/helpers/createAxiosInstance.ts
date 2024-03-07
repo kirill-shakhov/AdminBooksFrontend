@@ -1,5 +1,5 @@
 import axios, { HttpStatusCode, AxiosRequestConfig } from 'axios';
-import AuthService from '../../../modules/auth/services/AuthService.ts';
+import { authApi } from "@/services/api/controllers/authApi";
 
 const $api = axios.create({
     withCredentials: true,
@@ -31,7 +31,7 @@ const retryTracker = createRetryTracker();
 // originalConfig: AxiosRequestConfig, requestUrl: string
 async function handleUnauthorizedError(originalConfig:AxiosRequestConfig, requestUrl: string) {
   try {
-    const { accessToken } = await AuthService.refresh();
+    const { accessToken } = await authApi.refresh();
 
     localStorage.setItem('token', accessToken);
 
