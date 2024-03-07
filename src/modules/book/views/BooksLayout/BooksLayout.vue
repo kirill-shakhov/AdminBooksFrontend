@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <Header/>
+    <app-header/>
 
     <main class="flex-grow">
       <div class="mx-auto max-w-7xl flex gap-5 p-6 lg:px-8">
@@ -38,12 +38,12 @@
         <router-view/>
       </div>
     </main>
-    <Footer/>
+    <app-footer/>
   </div>
 </template>
 <script setup lang="ts">
-import Header from "../../../../shared/components/Header/Header.vue";
-import Footer from "../../../../shared/components/Footer/Footer.vue";
+import { AppHeader } from "@/shared/components/AppHeader/index.ts";
+import { AppFooter } from "@/shared/components/AppFooter";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
