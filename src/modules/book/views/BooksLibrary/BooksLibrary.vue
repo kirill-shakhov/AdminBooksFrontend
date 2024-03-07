@@ -27,17 +27,17 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { Book } from "../../types";
-import { bookService } from "../../services/bookService.ts";
+import { Book } from "@/modules/book/static/types";
 import { BookCard } from "@/modules/dashboard/components/BookCard";
 import { BookCardSkeleton } from "@/modules/dashboard/components/BookCard/BookCardSkeleton";
+import { bookApi } from "@/services/api/controllers/bookApi";
 
 const books = ref<Book[]>([]);
 const loading = ref(true);
 
 onMounted(async () => {
   try {
-    const response = await bookService.getUserBooks(); // Попытка загрузить книги
+    const response = await bookApi.getUserBooks(); // Попытка загрузить книги
     books.value = response.books;
     loading.value = false;
 
