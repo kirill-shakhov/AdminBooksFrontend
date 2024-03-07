@@ -88,10 +88,10 @@ import { computed } from "vue";
 import RegistrationStepOne from './RegistrationStepOne.vue';
 import RegistrationStepTwo from './RegistrationStepTwo.vue';
 
-import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
+import { UiButton } from "@/shared/components/UiButton";
+import { Logo } from "@/shared/components/Logo";
 
 import { registrationComposables } from "./Registration.composables.ts";
-import Logo from "../../../../shared/components/Logo/Logo.vue";
 
 const { data, loading, previousStep, validateFirstStep, displayCurrentStep, onSubmit } = registrationComposables();
 

@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import UiUploadFile from "../../../../shared/components/UiUploadFile/UiUploadFile.vue";
+import { UiUploadFile } from "@/shared/components/UiUploadFile";
 
 interface FormData {
   image: File | null

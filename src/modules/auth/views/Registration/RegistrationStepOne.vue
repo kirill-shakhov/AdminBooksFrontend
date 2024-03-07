@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
+import { UiInput } from "@/shared/components/UiInput";
 
 interface FormData {
   username: string;
