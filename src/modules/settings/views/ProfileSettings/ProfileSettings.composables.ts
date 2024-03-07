@@ -1,13 +1,12 @@
 import { reactive, ref } from "vue";
-import { useAuth } from "../../../../shared/composables/useAuth/useAuth.ts";
+import { useAuth } from "@/shared/composables/useAuth/useAuth.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
-import { profileService } from "../../services/ProfileService.ts";
 
-import { useNotification } from "../../../../shared/components/UiNotification/UiNotification.composables.ts";
+import { useNotification } from "@/shared/components/UiNotification/UiNotification.composables.ts";
 import { Profile } from "./ProfileSettings.types.ts";
 import { AxiosError } from "axios";
-import { UpdateProfileErrorResponse } from "../../types";
+import { profileApi, UpdateProfileErrorResponse } from "@/services/api/controllers/profileApi";
 
 const { notificationData, showNotification, } = useNotification();
 
@@ -54,7 +53,7 @@ export function useProfileSettings() {
     const changeProfileInfo = async (): Promise<void> => {
         try {
             const formData = collectFormData();
-            const response = await profileService.changeProfile(formData);
+            const response = await profileApi.changeProfile(formData);
 
             showNotification(response.message, 'success')
         } catch (e: unknown) {
