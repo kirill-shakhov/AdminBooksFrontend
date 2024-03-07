@@ -58,8 +58,8 @@
 
 <script setup lang="ts">
 import { UiButton } from "@/shared/components/UiButton";
+import { Book } from "@/modules/book/static/types";
 
-import { Book } from "../../../book/types";
 
 const props = defineProps<Book>();
 
