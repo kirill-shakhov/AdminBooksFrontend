@@ -1,6 +1,8 @@
 import $api from "@/services/api/helpers/createAxiosInstance.ts";
-import { AuthorsResponse, Book, BooksResponse, GenresResponse, UploadBookResponse } from "@/services/api/controllers/bookApi";
+
+import { AuthorsResponse, BooksResponse, GenresResponse, UploadBookResponse } from "@/services/api/controllers/bookApi";
 import { AxiosResponse } from "axios";
+import { Book } from "@/modules/book/static/types";
 
 class BookApi {
     async getUserBooks(): Promise<BooksResponse> {
