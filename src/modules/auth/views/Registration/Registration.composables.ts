@@ -2,12 +2,11 @@ import { computed, reactive, ref } from "vue";
 import { useRouter } from 'vue-router';
 
 
-import AuthService from "../../services/AuthService.ts";
 import { object, string } from "yup";
 import { useForm } from "vee-validate";
 
 import { RegistrationData } from './Registration.types.ts'
-import { CheckUserResponse } from "../../types";
+import { authApi, CheckUserResponse } from "@/services/api/controllers/authApi";
 
 export function registrationComposables() {
     const router = useRouter();
@@ -37,17 +36,6 @@ export function registrationComposables() {
     const { handleSubmit, validate, setFieldError } = useForm({
         validationSchema: schema
     });
-
-
-    // const collectFormData = () => {
-    //     return {
-    //         username: data.username,
-    //         password: data.password,
-    //         firstName: data.firstName,
-    //         lastName: data.lastName,
-    //         email: data.email
-    //     };
-    // }
 
     const collectFormData = () => {
         const formData = new FormData();
@@ -84,7 +72,7 @@ export function registrationComposables() {
 
     const checkUser = async () => {
         try {
-            const response: CheckUserResponse = await AuthService.checkUser({ username: data.username });
+            const response: CheckUserResponse = await authApi.checkUser({ username: data.username });
             return response.exists;
         } catch (e) {
             console.log(e);
@@ -120,7 +108,7 @@ export function registrationComposables() {
             loading.value = true;
 
             const formData = collectFormData();
-            const response = await AuthService.registration(formData);
+            const response = await authApi.registration(formData);
             console.log(response);
             localStorage.setItem('token', response.accessToken);
             await router.push('/')
