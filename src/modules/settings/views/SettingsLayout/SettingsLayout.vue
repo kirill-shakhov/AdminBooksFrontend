@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <app-header/>
     <div class="mx-auto max-w-7xl flex gap-5 p-6 lg:px-8">
 
       <nav class="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
@@ -21,10 +21,10 @@
 
       <router-view/>
     </div>
-    <Footer/>
+    <app-footer/>
   </div>
 </template>
 <script setup lang="ts">
-import Header from "../../../../shared/components/Header/Header.vue";
-import Footer from "../../../../shared/components/Footer/Footer.vue";
+import { AppHeader } from "@/shared/components/AppHeader";
+import { AppFooter } from "@/shared/components/AppFooter";
 </script>
