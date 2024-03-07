@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
+import { UiButton } from "@/shared/components/UiButton";
 
 import { Book } from "../../../book/types";
 
