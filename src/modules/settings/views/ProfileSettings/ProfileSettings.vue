@@ -78,12 +78,12 @@
 </template>
 
 <script setup lang="ts">
-import UiInput from '../../../../shared/components/UiInput/UiInput.vue';
+import { UiInput } from '@/shared/components/UiInput';
 
 import { useProfileSettings } from './ProfileSettings.composables.ts';
-import UiUploadFile from '../../../../shared/components/UiUploadFile/UiUploadFile.vue';
-import UiNotification from "../../../../shared/components/UiNotification/UiNotification.vue";
-import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
+import { UiUploadFile } from '@/shared/components/UiUploadFile';
+import { UiNotification } from "@/shared/components/UiNotification";
+import { UiButton } from "@/shared/components/UiButton";
 // commit
 
 const { data, onSubmit, notificationData, uploadedImgPreview } = useProfileSettings();
