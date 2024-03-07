@@ -105,7 +105,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import HeaderProfile from "./HeaderProfile/HeaderProfile.vue";
+import { HeaderProfile } from "@/shared/components/AppHeader/HeaderProfile";
 import { useAuth } from "../../composables/useAuth/useAuth.ts";
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -126,8 +126,8 @@ import {
 } from '@heroicons/vue/24/outline'
 import Logo from "../Logo/Logo.vue";
 
-const mobileMenuOpen = ref(false)
-const route = useRoute()
+const mobileMenuOpen = ref(false);
+const route = useRoute();
 
 watch(route, () => {
   mobileMenuOpen.value = false

@@ -34,7 +34,7 @@
 </template>
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import UiAvatar from "../../UiAvatar/UiAvatar.vue";
+import { UiAvatar } from "@/shared/components/UiAvatar";
 
 import { HeaderProfileComposables } from "./HeaderProfile.composables.ts";
 import { useAuth } from "../../../composables/useAuth/useAuth.ts";
