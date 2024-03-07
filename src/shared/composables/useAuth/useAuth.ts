@@ -1,4 +1,5 @@
-import AuthService from "../../../modules/auth/services/AuthService.ts";
+import { authApi } from "@/services/api/controllers/authApi";
+
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -22,7 +23,7 @@ export const useAuth = () => {
 
     const getUser = async (): Promise<void> => {
         try {
-            user.value = await AuthService.getUser();
+            user.value = await authApi.getUser();
         } catch (e) {
             console.log(e);
         }
@@ -34,7 +35,7 @@ export const useAuth = () => {
 
     const logout = async (): Promise<void> => {
         try {
-            await AuthService.logout();
+            await authApi.logout();
             localStorage.removeItem('token');
             await router.push('/login');
 
