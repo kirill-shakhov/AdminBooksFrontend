@@ -23,12 +23,7 @@
             <div class="mb-8 ">
               <div class="flex justify-between">
                 <span class="text-lg font-medium text-rose-500 dark:text-rose-200">New</span>
-                <!--                <ui-button-->
-                <!--                    theme="secondary"-->
-                <!--                    type="button"-->
-                <!--                >-->
-                <!--                  edit-->
-                <!--                </ui-button>-->
+
               </div>
               <h2 class="max-w-xl mt-2 mb-6 text-2xl font-bold md:text-4xl"> {{ book?.title }} </h2>
               <p class="max-w-md text-gray-700 dark:text-gray-400">
@@ -116,8 +111,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { bookService } from "../../services/bookService.ts";
-import { Book } from "../../types";
+import {  bookApi } from "@/services/api/controllers/bookApi";
 import { UiButton } from "@/shared/components/UiButton";
 import axios from "axios";
 
@@ -126,6 +120,7 @@ import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 
 import { UiModal } from "@/shared/components/UiModal";
 import BookDetailsSkeleton from "./BookDetailsSkeleton/BookDetailsSkeleton.vue";
+import { Book } from "@/modules/book/static/types";
 
 const route = useRoute();
 const router = useRouter();
@@ -138,7 +133,7 @@ const bookId = route.params.bookId as string;
 onMounted(async () => {
 
   try {
-    book.value = await bookService.getBook(bookId);
+    book.value = await bookApi.getBook(bookId);
     loading.value = false;
 
   } catch (error) {
@@ -211,7 +206,7 @@ const handleModalChange = (newState: boolean): void => {
 
 const deleteBook = async () => {
   try {
-    await bookService.deleteBook(bookId);
+    await bookApi.deleteBook(bookId);
     await router.push({ name: 'library' })
   } catch (e) {
     console.log(e);
