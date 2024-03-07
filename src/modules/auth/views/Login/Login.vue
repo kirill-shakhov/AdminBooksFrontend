@@ -73,11 +73,12 @@
 </template>
 
 <script lang="ts" setup>
-import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
-import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
+import { UiInput } from "@/shared/components/UiInput";
+import { UiButton } from "@/shared/components/UiButton";
 
 import { loginComposables } from "./Login.composables.ts";
-import Logo from "../../../../shared/components/Logo/Logo.vue";
+import { Logo } from "@/shared/components/Logo";
+
 
 const { data, loading, onSubmit } = loginComposables()
 
