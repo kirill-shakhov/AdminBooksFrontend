@@ -29,8 +29,8 @@
 import { onMounted, ref } from "vue";
 import { Book } from "../../types";
 import { bookService } from "../../services/bookService.ts";
-import BookCard from "../../../dashboard/components/BookCard/BookCard.vue";
-import BookCardSkeleton from "../../../dashboard/components/BookCard/BookCardSkeleton/BookCardSkeleton.vue";
+import { BookCard } from "@/modules/dashboard/components/BookCard";
+import { BookCardSkeleton } from "@/modules/dashboard/components/BookCard/BookCardSkeleton";
 
 const books = ref<Book[]>([]);
 const loading = ref(true);
