@@ -118,13 +118,13 @@ import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { bookService } from "../../services/bookService.ts";
 import { Book } from "../../types";
-import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
+import { UiButton } from "@/shared/components/UiButton";
 import axios from "axios";
 
 import { DialogTitle } from '@headlessui/vue'
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 
-import UiModal from "../../../../shared/components/UiModal/UiModal.vue";
+import { UiModal } from "@/shared/components/UiModal";
 import BookDetailsSkeleton from "./BookDetailsSkeleton/BookDetailsSkeleton.vue";
 
 const route = useRoute();
