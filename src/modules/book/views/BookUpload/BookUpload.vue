@@ -93,12 +93,12 @@
   </form>
 </template>
 <script setup lang="ts">
-import UiInput from "../../../../shared/components/UiInput/UiInput.vue";
-import UiButton from "../../../../shared/components/UiButton/UiButton.vue";
-import UiUploadFile from "../../../../shared/components/UiUploadFile/UiUploadFile.vue";
-import UiNotification from "../../../../shared/components/UiNotification/UiNotification.vue";
+import { UiInput } from "@/shared/components/UiInput";
+import { UiButton } from "@/shared/components/UiButton";
+import { UiUploadFile } from "@/shared/components/UiUploadFile";
+import { UiNotification } from "@/shared/components/UiNotification";
 import { useBookUpload } from "./BookUpload.composables.ts";
-import RecentItemsSelector from "../../components/RecentItemsSelector/RecentItemsSelector.vue";
+import { RecentItemsSelector } from "@/modules/book/components/RecentItemsSelector";
 
 const { data, loading, onSubmit, notificationData, recentGenres, recentAuthors } = useBookUpload();
 const setGenreName = (genreName: string): void => {
