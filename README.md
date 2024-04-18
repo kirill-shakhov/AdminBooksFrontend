@@ -20,8 +20,7 @@ AdminBookFrontend/
       ├── App.vue                 # Root Vue component
       ├── main.ts                 # Entry point of the application
       ├── assets/                 # Resources and assets
-      │   ├── images/             # Images
-      │   └── vue.svg
+      │   └── images/             # Images
       ├── modules/                # Application modules
       │   ├── auth/               # Authentication module
       │   ├── book/               # Book management module
