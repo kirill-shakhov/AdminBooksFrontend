@@ -2,13 +2,6 @@
 
 AdminBooksFrontend is a modern web application that makes it easier to manage books.
 
-## Key Features
-
-- **User Authentication:** Secure login and registration system for administrators and users.
-- **Book Management:** Comprehensive tools to manage book inventories including add, edit, and delete functionalities.
-- **Dynamic Library View:** Allows users to search, filter, and browse through the library’s collection seamlessly.
-- **Upload Facility:** Enables easy uploading of book details and images.
-
 ## Screenshots
 
 Here are some visual previews of what AdminBooksFrontend offers:
